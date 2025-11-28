@@ -1,0 +1,29 @@
+{
+ "cells": [
+  {
+   "kind": 2,
+   "language": "sql",
+   "value": "SET\n  search_path TO daily;\n\n\nCREATE TABLE subscribers (\n    user_id serial,\n    email VARCHAR(100),\n    is_verified boolean,\n    is_subscribed boolean\n);",
+   "metadata": {
+    "connectionName": "batch_22"
+   }
+  },
+  {
+   "kind": 2,
+   "language": "sql",
+   "value": "insert into daily.subscribers (email, is_verified, is_subscribed) values\n('starlordali@gmail.com',TRUE,FALSE);",
+   "metadata": {
+    "connectionName": "batch_22"
+   }
+  },
+  {
+   "kind": 2,
+   "language": "sql",
+   "value": "show search_path;",
+   "metadata": {
+    "connectionName": "batch_22"
+   }
+  }
+ ],
+ "metadata": {}
+}
