@@ -174,12 +174,15 @@ Find customers from Mumbai OR Delhi OR Bangalore OR Chennai.
 
 
 Multi-Layered Business Logic
+
 Scenario:
 The CEO wants a report on "High-Risk, High-Value" orders for the board meeting:
 
-Orders above ₹20,000 (high value) that are NOT delivered yet
-OR orders of any amount that are in 'Cancelled' or 'Returned' status
-But exclude orders from January 2024 (already reviewed)
+	Orders above ₹20,000 (high value) that are NOT delivered yet
+	OR 
+	orders of any amount that are in 'Cancelled' or 'Returned' status
+
+	But exclude orders from January 2024 (already reviewed)
 
 Task:
 Build a complex query with nested AND/OR/NOT logic.
@@ -201,6 +204,11 @@ where
 	);
 
 
+select 
+	*
+from
+	customers.customers
+limit 50
 
 
 
