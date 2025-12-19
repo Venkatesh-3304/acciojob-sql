@@ -158,7 +158,57 @@ Create the ultimate order tracking report combining all relevant information.
 
 
 Select
-	*
+	o.order_id,
+	o.order_date,
+
+	--Customer Information
+	c.full_name as customer_name,
+	c.city as customer_city,
+	c.state as customer_state,
+
+	--Product Information
+	p.prod_name as product,
+	p.category,
+	p.brand,
+	oi.quantity,
+	oi.unit_price,
+	(oi.quantity * oi.unit_price) as line_total,
+
+	--Store Information
+	st.store_name,
+	st.city as store_city,
+
+	--Order Status
+	o.order_status,
+
+	--Payment Information
+	pay.payment_mode,
+	pay.amount as payment_amount,
+	pay.payment_date,
+
+	--Shipment Information 
+	coalesce(ship.courier_name , 'Not Shipped') as courier,
+	coalesce(ship.status, 'Pending') as shipment_status,
+	ship.shipped_date,
+	ship.delivered_date,
+
+	--Return Information (If Any)
+
+	case 
+		when ret.return_id is not null then 'Yes'
+		else 'No'
+	end as has_return,
+	ret.reason as return_reason,
+	ret.refund_amount,
+
+	--Overall Status
+	Case
+		when ret.return_id is not null then 'Returned'
+		when ship.status = 'Delivered' then 'Completed'
+		when ship.status = 'Shipped' then 'On the Way'
+		when pay.payment_id is not null then 'Paid - Awaiting Shipment'
+		else ' Processing'
+	end as journey_status
 from
 	sales.orders o
 	--Always have customer(INNER)
@@ -183,6 +233,8 @@ from
 	left join sales.returns ret
 		on o.order_id=ret.order_id
 			and oi.prod_id=ret.prod_id
+limit 25;
 
+select distinct status from sales.shipments ship
 
 
