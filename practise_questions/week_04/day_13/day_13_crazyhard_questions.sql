@@ -1,0 +1,1095 @@
+-- ============================================
+-- Day 13: Window Functions Part 1 (Ranking) - CRAZY HARD Level
+-- Student Question Bank
+-- ============================================
+-- Total Questions: 100
+-- Focus: Long confusing business stories, extracting logic from messy requirements
+-- ============================================
+-- Concepts ALLOWED:
+--   Days 1-12: All previous concepts (SELECT, WHERE, JOINs, Aggregates, 
+--              GROUP BY, HAVING, CASE WHEN, Subqueries, CTEs, Set Operations)
+--   Day 13: OVER clause, PARTITION BY, ORDER BY in window functions,
+--           ROW_NUMBER(), RANK(), DENSE_RANK(), frame clause basics
+-- ============================================
+-- Concepts NOT ALLOWED:
+--   - LEAD(), LAG()
+--   - FIRST_VALUE(), LAST_VALUE(), NTH_VALUE()
+--   - Running totals (SUM OVER), Moving averages (AVG OVER)
+--   - Advanced window frames (ROWS BETWEEN, RANGE BETWEEN)
+--   - NTILE, PERCENT_RANK
+--   - Transactions, Views, Functions, Procedures
+-- ============================================
+
+-- Q1. It was 11:47 PM when Rakesh, the head of Flipkart's marketplace integrity team, 
+-- got a frantic call from the CEO. "We've got sellers gaming our system," the CEO said. 
+-- "Some of them are creating multiple supplier accounts and artificially inflating their 
+-- product rankings by cross-purchasing." Rakesh needs to identify suppliers whose products 
+-- appear suspiciously often in the same orders as products from other suppliers with 
+-- similar naming patterns. For each supplier, he needs to: (a) rank them by the frequency 
+-- their products appear in multi-supplier orders, (b) identify the rank of their most common 
+-- "co-supplier" partner, and (c) flag suppliers where their top co-supplier's products have 
+-- very similar price points (within 5% when both products' price ranks are compared within 
+-- their respective categories). The board meeting is at 8 AM and he needs this analysis now.
+
+-- Q2. Zomato's new CFO, Priya Mehta, just finished her first quarterly review and discovered 
+-- something alarming. She noticed that certain stores seem to have excellent sales figures 
+-- but terrible profitability, while others have the opposite pattern. "I need to understand 
+-- our portfolio health," she told her team. She wants a "store health matrix" that ranks 
+-- each store on four separate dimensions: (1) revenue rank within its region, (2) profit 
+-- margin rank within its region (using revenue_summary), (3) employee productivity rank 
+-- (revenue per employee) within its region, and (4) customer satisfaction rank (average 
+-- review rating of products sold at that store) within its region. For each store, she wants 
+-- to see all four ranks side by side, plus a flag indicating if any rank differs from the 
+-- others by more than 10 positions - these are the "inconsistent" stores that need investigation. 
+-- The board presentation is tomorrow and she needs stores categorized as: "Stars" (all ranks 
+-- in top 25%), "Concerns" (any rank in bottom 25%), and "Inconsistent" (rank variance > 10).
+
+-- Q3. BigBasket's supply chain director, Amit Sharma, was reviewing vendor contracts when 
+-- he realized the company might be overly dependent on certain suppliers for critical 
+-- product categories. He remembered reading about how Toyota's production once halted 
+-- because of a single supplier failure. Now he needs a comprehensive "supplier risk assessment" 
+-- that considers multiple factors: (a) For each category, rank suppliers by their market share 
+-- (sales volume of their products in that category), (b) For each supplier, calculate a 
+-- "criticality score" based on: the number of categories where they rank #1 or #2, the 
+-- total revenue at risk if they failed (sum of their products' sales), and the availability 
+-- of alternatives (count of other suppliers in the same categories), (c) Finally, create a 
+-- "risk priority rank" that combines these factors. Amit needs to present this to the 
+-- procurement committee next week, and they specifically want to see the top 10 highest-risk 
+-- supplier dependencies and suggested mitigation strategies based on the data patterns.
+
+-- Q4. Late one Thursday evening, Myntra's customer experience head, Neha Kapoor, received 
+-- concerning feedback from the customer success team. "We're getting complaints that our 
+-- recommendations seem random," her team lead said. "Customers feel like we don't understand 
+-- their preferences." Neha decided to validate this by building a "recommendation accuracy" 
+-- analysis. For each customer, she needs to: (a) identify their category preferences by ranking 
+-- categories by the customer's purchase frequency in each, (b) compare these personal category 
+-- ranks with the overall category popularity ranks in the system, (c) calculate a "uniqueness 
+-- score" - customers with very different personal ranks vs. overall ranks have unique tastes 
+-- and need personalized recommendations, while those whose ranks match the overall pattern 
+-- can receive popular item recommendations. She wants customers segmented into: "Mainstream" 
+-- (personal ranks correlate with overall), "Unique" (personal ranks diverge significantly), 
+-- and "Explorers" (shop across many categories with no clear preference pattern). Each segment 
+-- needs its own row numbering, and she wants the top 100 customers from each segment for 
+-- a focus group study.
+
+-- Q5. Amazon India's loss prevention team discovered a potential fraud pattern at 3 AM. 
+-- Their monitoring system flagged that certain product-store combinations had suspiciously 
+-- high return rates, but when investigated individually, nothing stood out. The pattern only 
+-- emerged when looking at rankings. The team leader, Vikram Reddy, hypothesizes that fraudsters 
+-- are systematically buying and returning products from specific stores in a way that stays 
+-- just below detection thresholds. He needs a query that: (a) ranks products by return rate 
+-- within each store, (b) ranks stores by return rate within each region, (c) identifies 
+-- "intersection anomalies" - cases where a product ranks in the top 10% for returns at a 
+-- specific store, AND that store ranks in the top 20% for returns in its region, AND the 
+-- product's return rank at that store is significantly worse than its return rank across 
+-- all stores. These triple-intersection cases need to be flagged with the severity based 
+-- on how extreme the rank differences are. Vikram needs results before the morning standup.
+
+-- Q6. Swiggy's HR director, Anjali Krishnan, was conducting her annual workforce planning 
+-- review when she noticed something puzzling about salary distributions. Some departments 
+-- seemed to have very compressed salary ranges while others had extreme spreads. She 
+-- suspects this might be creating retention issues. She needs an analysis that: (a) ranks 
+-- employees by salary within their department, (b) ranks employees by salary within their 
+-- role across all departments, (c) calculates a "equity flag" for employees whose department 
+-- rank differs from their cross-department role rank by more than 5 positions (suggesting 
+-- they're paid differently than peers in the same role elsewhere), (d) identifies "compression 
+-- zones" - groups of 3+ consecutive employees (by salary rank) whose salaries differ by 
+-- less than 5%, and (e) ranks departments by the severity of their compression issue (count 
+-- of employees in compression zones / total employees). The CHRO wants a presentation showing 
+-- which departments need immediate compensation review and which employees might be flight risks.
+
+-- Q7. PhonePe's product strategy team is preparing for a quarterly business review, and the 
+-- VP of Product, Karthik Iyer, wants to understand the "product portfolio dynamics." He 
+-- explains: "I want to see which products are rising stars, which are cash cows, and which 
+-- are dogs, but I don't want simple revenue buckets. I want to see movement patterns." 
+-- He needs an analysis that: (a) ranks products by revenue in Q1 2024 (or available period), 
+-- (b) ranks the same products by revenue in Q2 2024 (or next period), (c) calculates "rank 
+-- velocity" - how many positions each product moved between periods, (d) categorizes products 
+-- as "Rockets" (moved up 10+ ranks), "Risers" (moved up 3-9 ranks), "Stable" (moved ±2 ranks), 
+-- "Fallers" (moved down 3-9 ranks), and "Crashers" (moved down 10+ ranks), (e) within each 
+-- category, further ranks products by absolute revenue to prioritize attention. He wants 
+-- the final output to show the top 20 products in each movement category with their full 
+-- rank trajectory.
+
+-- Q8. Ola's finance team just discovered a significant variance in their monthly expense reports. 
+-- The controller, Meera Nair, suspects that some stores are misclassifying expenses to game 
+-- their performance metrics. She needs a forensic analysis that: (a) for each store, ranks 
+-- expense categories by their share of total store expenses, (b) creates a "benchmark profile" 
+-- by calculating the average rank of each expense category across all stores in the same region, 
+-- (c) identifies "anomaly stores" where any expense category's rank differs from the regional 
+-- benchmark by more than 3 positions, (d) for each anomaly, calculates the "severity score" 
+-- based on the magnitude of the rank difference weighted by the expense amount, (e) ranks 
+-- stores by their total anomaly severity score. The audit committee meeting is in 48 hours 
+-- and she needs a list of the top 15 stores requiring immediate audit review with detailed 
+-- breakdown of which expense categories are flagged and why.
+
+-- Q9. Paytm's growth team is analyzing customer acquisition effectiveness across marketing 
+-- channels. The marketing director, Rahul Menon, has a theory: "Customers acquired through 
+-- different channels have different lifetime values, but we've never quantified this properly." 
+-- He needs an analysis that: (a) for each customer, determines their "acquisition cohort" 
+-- based on their join_date month-year, (b) calculates total customer spending, (c) ranks 
+-- customers by spending within their cohort, (d) analyzes if customers from certain cohorts 
+-- consistently rank higher in spending (suggesting better acquisition quality during those 
+-- periods), (e) further partitions by region to see if cohort quality varies geographically. 
+-- He wants to identify the top 5 "golden cohorts" (cohort-region combinations where the median 
+-- customer ranks in the top 30% of all-time spending) and the bottom 5 "weak cohorts" for 
+-- channel strategy adjustment. The analysis should use CTEs to build up the cohort rankings 
+-- progressively.
+
+-- Q10. IRCTC's inventory management system flagged multiple alerts simultaneously, causing 
+-- the operations center to scramble. The inventory director, Suresh Kumar, needs to prioritize 
+-- which alerts to address first. He wants a sophisticated "alert triage system" that: 
+-- (a) ranks products by stockout urgency (current stock / average daily sales, with lower 
+-- values more urgent), (b) ranks products by revenue impact (average order value when product 
+-- is included), (c) ranks products by customer impact (number of distinct customers who've 
+-- bought the product), (d) creates a composite "alert priority score" using weighted ranks 
+-- (urgency 50%, revenue 30%, customer impact 20%), (e) identifies "cascade risks" - products 
+-- whose stockout might affect related product sales (products frequently bought together), 
+-- (f) final ranking considering both individual priority and cascade risk. He needs the top 
+-- 25 products with their complete rank breakdown for the emergency response team.
+
+-- Q11. Reliance Retail's merchandising team is preparing for the annual store planogram 
+-- optimization. The merchandising head, Deepika Patel, wants data-driven shelf space 
+-- allocation. She needs an analysis that: (a) ranks products by sales within their category, 
+-- (b) ranks products by profit margin within their category, (c) ranks products by purchase 
+-- frequency (number of transactions, not quantity), (d) creates a "shelf priority score" 
+-- combining all three ranks with weights, (e) partitions this by store to create store-specific 
+-- rankings (as product performance varies by location), (f) identifies "must-stock" items 
+-- (top 10% across all dimensions at a store), "consider dropping" items (bottom 20% across all), 
+-- and "optimize placement" items (high on some dimensions, low on others). For each store, 
+-- she wants the product assortment categorized into these three buckets with supporting rank data.
+
+-- Q12. Flipkart's customer segmentation model is being rebuilt by the analytics team. 
+-- The analytics lead, Prashant Joshi, believes the current RFM (Recency, Frequency, Monetary) 
+-- model is too simplistic. He proposes an enhanced "RFMCD" model adding Category breadth 
+-- and Discount sensitivity. He needs: (a) Recency rank - customers ranked by days since last 
+-- order (most recent = rank 1), (b) Frequency rank - customers ranked by order count, 
+-- (c) Monetary rank - customers ranked by total spending, (d) Category rank - customers ranked 
+-- by number of distinct categories purchased (breadth), (e) Discount rank - customers ranked 
+-- by average discount percentage on their orders (least discount-dependent = rank 1, as they 
+-- pay full price). For each customer, calculate their average rank across all 5 dimensions, 
+-- then rank customers by this average to create a "composite value score." Segment customers 
+-- into: "Champions" (composite rank in top 5%), "Loyal" (top 20%), "Potential" (top 50%), 
+-- "At Risk" (bottom 50%), and show the distribution of original dimension ranks within each 
+-- segment to understand segment characteristics.
+
+-- Q13. Zomato's delivery operations team is facing driver shortages in certain areas during 
+-- peak hours. The operations head, Arjun Singh, needs to optimize driver deployment by 
+-- understanding demand patterns at a granular level. He needs: (a) for each store, rank hours 
+-- of the day by order volume, (b) for each store, rank days of the week by order volume, 
+-- (c) identify "super peak" combinations (day-hour combos that rank in top 3 for both dimensions 
+-- at a store), (d) calculate the demand concentration - percentage of weekly orders that occur 
+-- during these super peaks, (e) rank stores by demand concentration (higher concentration = 
+-- easier to staff efficiently), (f) identify "nightmare stores" - stores with low concentration 
+-- (spread-out demand) AND high total volume (requiring many drivers but unpredictably). 
+-- The driver allocation model needs the top 10 nightmare stores with their complete demand 
+-- profile for special handling.
+
+-- Q14. BigBasket's category management team is conducting their annual category review. 
+-- The category director, Lavanya Sharma, wants to evaluate category managers' performance 
+-- objectively. She needs: (a) for each category, calculate metrics: total revenue, revenue 
+-- growth (if historical data available, otherwise inventory turnover), customer count, 
+-- average basket size when category is present, (b) rank each category on each metric, 
+-- (c) create a "category health score" as weighted average of ranks, (d) rank category managers 
+-- by the average health score of their managed categories, (e) identify "turnaround opportunities" - 
+-- categories where some metrics rank well but overall health ranks poorly (suggesting specific 
+-- improvement areas), (f) flag categories where the rank on customer count significantly 
+-- exceeds the rank on revenue (suggesting lots of customers but low spending, indicating 
+-- price or assortment issues). The presentation should show each category's complete rank 
+-- profile with manager attribution.
+
+-- Q15. Myntra's fraud detection system generated 847 alerts last month, overwhelming the 
+-- investigation team. The fraud manager, Ravi Shankar, needs a smarter prioritization system. 
+-- He needs: (a) for each customer, calculate their "normal behavior profile" - rank patterns 
+-- for order value, order frequency, category preferences, and payment modes, (b) for recent 
+-- orders, calculate the "deviation score" - how different the order's characteristics rank 
+-- compared to the customer's normal profile, (c) rank orders by deviation severity, (d) weight 
+-- this by order value (high deviation + high value = critical), (e) further flag orders where 
+-- the shipping address has no previous orders (new address + high deviation + high value = 
+-- maximum priority), (f) segment alerts into "Critical" (top 5%), "High" (top 20%), "Medium" 
+-- (top 50%), and "Low" with expected investigation time estimates based on complexity. 
+-- The team can only investigate 50 alerts per day, so he needs the prioritized queue with 
+-- all supporting rank data.
+
+-- Q16. Amazon India's pricing team discovered that competitors are using dynamic pricing 
+-- algorithms that respond to Amazon's prices within hours. The pricing strategy head, 
+-- Nandini Rao, needs to identify which products are most vulnerable to competitive pricing 
+-- pressure. She needs: (a) rank products by price volatility (if price history available, 
+-- otherwise use discount variance as proxy), (b) rank products by market share within category 
+-- (sales volume as share of category), (c) rank products by price sensitivity (how much sales 
+-- rank changes when discount rank changes - requires comparing two time periods), (d) identify 
+-- "price war vulnerable" products - high market share + high price sensitivity + competitors 
+-- present in category (multiple brands), (e) rank these vulnerable products by the potential 
+-- revenue at risk (current sales × average price), (f) segment into "Defend" (must maintain 
+-- market share), "Concede" (not worth fighting), and "Attack" (opportunity to gain share). 
+-- The strategy team needs the top 30 products in each segment with complete competitive 
+-- positioning data.
+
+-- Q17. Swiggy's regional expansion committee is evaluating new cities for market entry. 
+-- The expansion head, Sanjay Deshmukh, wants to use existing market data to predict new 
+-- market potential. He needs: (a) for existing markets (cities), calculate performance metrics: 
+-- orders per customer, average order value, customer acquisition rate (new customers/month), 
+-- (b) rank cities on each metric, (c) create a "market maturity score" as weighted rank average, 
+-- (d) identify "reference cities" for each potential new city based on demographic similarities 
+-- (population proxy via postal codes, region), (e) calculate "expected performance rank range" 
+-- for new cities based on how reference cities performed in their early months, (f) rank 
+-- new city opportunities by the gap between expected potential and current resources required. 
+-- The board presentation needs the top 5 expansion candidates with comparative data to 
+-- similar existing cities and expected ROI ranking.
+
+-- Q18. PhonePe's vendor management team is renegotiating contracts with 200+ suppliers. 
+-- The procurement director, Anand Kumar, needs data to support negotiation strategies. 
+-- He needs: (a) rank suppliers by total business value (revenue from their products), 
+-- (b) rank suppliers by product quality (average customer ratings), (c) rank suppliers by 
+-- reliability (return rate of their products - lower is better), (d) rank suppliers by 
+-- uniqueness (number of product categories where they're the only or primary supplier), 
+-- (e) create a "supplier power score" - suppliers with high uniqueness rank have more power, 
+-- (f) create a "replacement difficulty score" - considering uniqueness, quality, and volume, 
+-- (g) segment suppliers into "Strategic Partners" (high value + hard to replace), "Leverage 
+-- Opportunities" (high value + easy to replace, so we can negotiate hard), "Nurture" 
+-- (low value now but high quality, invest in growing relationship), and "Transactional" 
+-- (commoditized, pure price negotiation). Each segment needs different negotiation playbooks.
+
+-- Q19. Ola's executive team is preparing for the annual strategy offsite. The CEO wants to 
+-- understand organizational health through the lens of employee data. The CHRO, Kavitha Reddy, 
+-- needs: (a) rank departments by average salary (compensation competitiveness), (b) rank 
+-- departments by salary spread (max-min) as a ratio to average (equity within department), 
+-- (c) rank departments by attendance rate (engagement proxy), (d) rank departments by 
+-- employee count growth (if derivable, otherwise static count), (e) create a "department 
+-- health score" combining these metrics, (f) identify "warning departments" - high salary 
+-- rank but low attendance rank (paying well but not engaged), or low salary rank but high 
+-- attendance rank (engaged but underpaid - flight risk), (g) for each warning department, 
+-- identify the specific employees who contribute most to the concerning pattern (their 
+-- individual ranks vs. department averages). The board deck needs a visual-friendly output 
+-- showing department rankings with color-coded health indicators.
+
+-- Q20. Paytm's customer lifecycle team is building a churn prediction model. The data science 
+-- manager, Shreya Menon, needs behavioral features that capture rank changes over time. 
+-- She needs: (a) for each customer, calculate their order value rank in their first 3 months, 
+-- (b) calculate their order value rank in months 4-6, (c) calculate the "rank trajectory" - 
+-- improvement or decline in rank position, (d) similarly calculate rank trajectories for: 
+-- order frequency, category diversity, and average days between orders, (e) create a composite 
+-- "engagement trajectory score" from these individual trajectories, (f) identify "silent 
+-- churners" - customers whose trajectory scores are declining but who haven't stopped ordering 
+-- yet (early intervention targets), (g) segment by trajectory pattern: "Growing" (positive 
+-- trajectory), "Plateau" (stable trajectory), "Declining" (negative trajectory), "Churned" 
+-- (no recent orders). The model training dataset needs these trajectory features for all 
+-- customers with at least 6 months of history.
+
+-- Q21. IRCTC's dynamic pricing team wants to implement surge pricing during high-demand 
+-- periods. The revenue management head, Vikram Sharma, needs demand pattern analysis: 
+-- (a) rank each day-hour combination by order volume for the past year, (b) rank by average 
+-- order value for the same combinations, (c) identify "opportunity windows" - time slots 
+-- that rank high on volume but lower on order value (customers are buying, but not spending 
+-- much - might accept premium options), (d) identify "premium windows" - time slots that 
+-- rank high on order value (customers already spending more - maintain experience), 
+-- (e) for each store, calculate the rank of each time slot relative to that store's pattern 
+-- (localized surge detection), (f) create a "surge pricing eligibility score" considering 
+-- volume rank, local demand pattern, and customer price sensitivity (derived from discount 
+-- usage patterns). The pricing committee needs the complete time-slot-store matrix with 
+-- surge eligibility rankings.
+
+-- Q22. Reliance Retail's omnichannel team is analyzing customer behavior across touchpoints. 
+-- The digital head, Arun Krishnamurthy, wants to understand channel preferences: (a) for 
+-- customers with multiple addresses, rank addresses by order frequency, (b) for customers 
+-- with orders at multiple stores, rank stores by their preference, (c) for customers with 
+-- multiple payment modes, rank modes by usage frequency, (d) create a "channel loyalty score" - 
+-- customers who consistently use the same top-ranked options across dimensions are loyal, 
+-- those who vary are flexible, (e) identify "channel migrators" - customers whose rankings 
+-- have changed significantly over time (comparing first half vs. second half of their history), 
+-- (f) segment into "Store Loyalists," "Address Flexible," "Payment Explorers," and "Omnivores" 
+-- based on the combination of loyalty scores across dimensions. Each segment needs specific 
+-- engagement strategies.
+
+-- Q23. BigBasket's assortment optimization AI is being trained by the data team. The ML 
+-- lead, Pooja Nair, needs comprehensive product affinity features: (a) for each product pair 
+-- that appears together in orders, calculate co-occurrence frequency, (b) rank product pairs 
+-- by co-occurrence within category (intra-category affinity), (c) rank product pairs by 
+-- co-occurrence across categories (cross-category affinity), (d) for each product, identify 
+-- its "affinity profile" - the ranks of its top 5 companion products, (e) identify "bridge 
+-- products" - products that rank highly in cross-category affinity (customers buying these 
+-- often explore other categories), (f) identify "anchor products" - products that when present, 
+-- significantly increase the order value rank of the order, (g) create a "merchandising 
+-- priority score" for each product based on its bridge and anchor potential. The recommendation 
+-- engine needs this affinity matrix for collaborative filtering.
+
+-- Q24. Myntra's personalization team is debugging why recommendations are underperforming. 
+-- The personalization lead, Rohan Jain, suspects there's a "cold start" problem with new 
+-- products. He needs: (a) for products launched in the last 6 months, calculate their 
+-- current sales rank within category, (b) calculate their rating rank (if they have ratings), 
+-- (c) identify "invisible products" - new products that rank poorly on sales but should 
+-- rank higher based on category trends, (d) for each invisible product, find similar 
+-- "visible products" (same category, similar price rank) and compare their rank trajectories, 
+-- (e) calculate a "visibility debt" score - the gap between expected rank (based on similar 
+-- products' performance) and actual rank, (f) rank new products by visibility debt to 
+-- prioritize for marketing push, (g) segment the recommendation issue: "Discovery Problem" 
+-- (high quality but low visibility), "Quality Problem" (visible but poor ratings), or 
+-- "Pricing Problem" (visible and rated but price rank doesn't match value perception).
+
+-- Q25. Amazon India's fulfillment network optimization team is redesigning inventory 
+-- allocation. The network planning head, Srinivas Rao, needs: (a) for each product-store 
+-- combination, calculate the "service level" - how often the product is in stock when 
+-- ordered (derived from returns with reason "out of stock" or inventory levels vs. sales), 
+-- (b) rank product-store combinations by service level within each product (which stores 
+-- serve this product best), (c) rank by service level within each store (which products 
+-- does this store handle best), (d) identify "allocation opportunities" - product-store 
+-- combinations where the store ranks well overall but poorly for specific products 
+-- (suggesting they should receive more inventory), (e) identify "consolidation opportunities" - 
+-- products where few stores rank well (concentrate inventory), (f) calculate "network 
+-- efficiency score" - the degree to which high-demand stores have high-service-level 
+-- inventory, (g) simulate reallocation impact by calculating what ranks would change if 
+-- inventory moved from low-rank to high-rank locations. The operations council needs 
+-- the top 50 reallocation recommendations with expected impact.
+
+-- Q26. Swiggy's competitive intelligence team monitors market positioning. The strategy 
+-- analyst, Divya Krishnan, needs: (a) rank product categories by market size (total sales), 
+-- (b) rank categories by growth rate (comparing periods), (c) rank categories by profitability 
+-- (margin proxy), (d) rank categories by competition intensity (number of brands, supplier 
+-- concentration), (e) create a "category attractiveness score" combining these dimensions, 
+-- (f) identify "strategic battlegrounds" - categories that rank high on size and growth 
+-- but also high on competition (worth fighting for), (g) identify "hidden gems" - categories 
+-- that rank high on profitability but low on competition (protect and nurture), (h) identify 
+-- "exit candidates" - categories with poor ranks across all dimensions. The strategy 
+-- presentation needs a visual portfolio matrix with each category positioned and labeled 
+-- by its strategic role.
+
+-- Q27. PhonePe's customer service optimization team is analyzing support ticket patterns. 
+-- The customer success director, Ramesh Iyer, needs: (a) rank customers by ticket volume 
+-- (support burden), (b) rank customers by ticket severity (if available, otherwise by 
+-- resolution time as proxy), (c) rank customers by lifetime value, (d) identify "high-value 
+-- high-maintenance" customers - those who rank in top 20% on both support burden and LTV, 
+-- (e) identify "low-value high-maintenance" customers - high support rank but low LTV rank, 
+-- (f) calculate "service ROI rank" - LTV rank minus support burden rank (positive = profitable 
+-- to serve), (g) for high-value high-maintenance customers, analyze their support patterns 
+-- to identify root causes (correlate with product categories, payment modes, etc. using 
+-- rank analysis). The customer success playbook needs segment-specific strategies based 
+-- on service ROI rankings.
+
+-- Q28. Ola's product launch effectiveness is being analyzed by the product marketing team. 
+-- The PMM lead, Megha Sharma, needs: (a) for each product launched in the past year, 
+-- calculate week-over-week sales rank trajectory for the first 8 weeks, (b) classify launch 
+-- trajectories as: "Blockbuster" (consistently improving rank), "Flash" (high initial rank 
+-- that declined), "Sleeper" (low initial rank that improved), "Dud" (consistently poor rank), 
+-- (c) for each trajectory type, calculate the average marketing spend (if derivable from 
+-- campaigns/promotions during launch window), (d) identify "overmarketed duds" - products 
+-- with high campaign exposure rank but dud trajectory, (e) identify "undermarketed sleepers" - 
+-- products with sleeper trajectory despite low marketing rank, (f) calculate "launch 
+-- efficiency score" - rank improvement per marketing dollar proxy. The launch playbook 
+-- needs data-backed recommendations on marketing spend levels for different product types.
+
+-- Q29. Paytm's returns optimization team is analyzing return patterns for process improvement. 
+-- The returns manager, Anita Desai, needs: (a) rank products by return rate within category, 
+-- (b) rank products by average days to return (fast returns suggest immediate quality issues, 
+-- slow returns suggest wrong expectations), (c) rank return reasons by frequency within 
+-- each product (what drives returns for each product), (d) identify "quality issue products" - 
+-- high return rate rank + "defective" reason ranks highly, (e) identify "expectation gap 
+-- products" - high return rate rank + "not as expected" reason ranks highly, (f) identify 
+-- "size issue products" - high return rate rank + "wrong size/fit" reason ranks highly, 
+-- (g) for each issue type, calculate the cost impact (return volume × refund amount) and 
+-- rank by remediation priority, (h) create a "returns reduction roadmap" prioritizing 
+-- by cost impact rank and issue type (different fixes for each). The quality team needs 
+-- the top 20 products for each issue category with root cause data.
+
+-- Q30. IRCTC's seasonal planning team is preparing for the festive season. The planning 
+-- head, Sunita Rao, needs: (a) analyze last year's festive period (Oct-Dec) and rank 
+-- products by sales volume growth vs. non-festive baseline, (b) rank products by 
+-- inventory stockout frequency during festive period, (c) rank products by return rate 
+-- increase during festive period (rushed buying leads to more returns), (d) identify 
+-- "festive stars" - products that rank high on sales growth and low on stockout and 
+-- return issues, (e) identify "festive nightmares" - high sales growth but also high 
+-- stockout and return ranks, (f) for each store, rank categories by festive importance 
+-- (share of festive sales vs. annual sales), (g) create "festive readiness score" for 
+-- each product-store combination based on: expected demand rank, current inventory rank, 
+-- and historical issue rank. The operations team needs the bottom 50 readiness scores 
+-- (highest risk product-store combinations) to prioritize pre-festive preparation.
+
+-- Q31. Reliance Retail's customer analytics team is building a next-generation loyalty 
+-- program. The loyalty program director, Vivek Menon, needs: (a) rank customers by 
+-- current loyalty points (explicit loyalty), (b) rank customers by purchase consistency - 
+-- standard deviation of monthly spending (implicit loyalty), (c) rank customers by 
+-- brand concentration - what percentage of their purchases are from their top 3 brands, 
+-- (d) rank customers by promotion responsiveness - correlation between their purchase 
+-- timing and promotion periods, (e) create a "loyalty character profile" for each customer: 
+-- "True Loyal" (high on explicit and implicit), "Points Hunter" (high points but low 
+-- consistency - buys only during promotions), "Silent Loyal" (low points but high consistency), 
+-- "At Risk" (declining ranks across dimensions), (f) calculate the "loyalty gap" - the 
+-- difference between what tier a customer is in and what tier they deserve based on 
+-- implicit loyalty, (g) rank customers by upgrade potential (loyalty gap × purchase 
+-- velocity). The new program design needs segment sizes and characteristics.
+
+-- Q32. Flipkart's marketplace health monitoring needs suspicious seller detection. 
+-- The trust & safety lead, Priya Venkat, needs: (a) rank suppliers by sales velocity 
+-- (sudden spikes are suspicious), (b) rank suppliers by rating trajectory (sudden 
+-- improvements after initial poor ratings are suspicious), (c) rank suppliers by 
+-- customer concentration (sales to too few customers suggests fake orders), (d) rank 
+-- suppliers by price competitiveness trajectory (sudden undercutting might be dumping), 
+-- (e) create a "trust score" as inverse of combined suspicious signal ranks, (f) identify 
+-- "monitoring priority" suppliers - low trust score + high sales volume (risky AND impactful), 
+-- (g) for each monitoring priority supplier, detail which specific signals triggered 
+-- the flag and their rank trajectory over the past 3 months, (h) estimate customer 
+-- impact if supplier is removed (customers who primarily buy from this supplier). 
+-- The investigation queue needs the top 25 suppliers with complete evidence packages.
+
+-- Q33. Zomato's menu engineering analytics is helping restaurant partners optimize 
+-- their offerings (simulated through product catalog). The partner success lead, 
+-- Aditya Sharma, needs: (a) for each store, rank products by "menu star" dimensions: 
+-- popularity (order frequency), profitability (margin proxy from price vs. category avg), 
+-- (b) classify into BCG-style matrix: "Stars" (high pop + high profit), "Plow Horses" 
+-- (high pop + low profit), "Puzzles" (low pop + high profit), "Dogs" (low both), 
+-- (c) rank stores by "menu health" - percentage of revenue from Stars, (d) for each 
+-- store, identify "menu opportunities" - Puzzles that could become Stars with better 
+-- promotion (rank by profit margin), (e) identify "menu burdens" - Dogs that should 
+-- be removed (rank by how much they're dragging down average metrics), (f) calculate 
+-- "menu optimization potential" for each store - estimated revenue increase if menu 
+-- is optimized based on moving Puzzles to Stars and removing Dogs. The partner toolkit 
+-- needs store-specific recommendations ranked by impact.
+
+-- Q34. BigBasket's supply chain finance team is optimizing payment terms. The treasury 
+-- head, Rajesh Kumar, needs: (a) rank suppliers by payment urgency (smaller suppliers 
+-- with cash flow needs), (b) rank suppliers by strategic importance (revenue contribution 
+-- + uniqueness), (c) rank suppliers by reliability (on-time delivery proxy through 
+-- inventory stability), (d) create payment priority tiers: "Strategic Premium" (high 
+-- importance, offer early payment discounts), "Standard" (medium importance, standard 
+-- terms), "Extended" (low importance + reliable, can negotiate longer terms), 
+-- (e) calculate cash flow impact of different payment term scenarios using the tier 
+-- rankings, (f) identify "negotiation opportunities" - suppliers in Extended tier with 
+-- poor reliability rank (leverage for better terms), (g) rank suppliers by "relationship 
+-- investment priority" - strategic importance rank that can be improved with better terms. 
+-- The treasury committee needs the complete supplier payment matrix with recommended 
+-- terms and expected cash flow impact.
+
+-- Q35. Myntra's demand forecasting accuracy is being audited. The demand planning head, 
+-- Sneha Kapoor, needs: (a) for each product, calculate forecast accuracy rank (if forecasts 
+-- available, otherwise use sales stability as proxy), (b) rank products by forecast 
+-- importance (high-value or high-volume products where accuracy matters more), (c) identify 
+-- "forecast challenging" products - low accuracy rank + high importance rank, (d) for 
+-- forecast challenging products, analyze which factors correlate with forecast errors: 
+-- category, price point, seasonality, promotion sensitivity (rank products by each factor 
+-- and look for patterns), (e) segment forecast challenging products by root cause: 
+-- "Inherently Volatile" (no clear patterns), "Promotion Driven" (errors correlate with 
+-- promotions), "Seasonal" (errors correlate with season), "New Product" (insufficient 
+-- history), (f) for each root cause segment, rank products by improvement priority and 
+-- suggested methodology adjustments. The planning methodology review needs segment-specific 
+-- recommendations.
+
+-- Q36. Amazon India's customer experience team is analyzing journey friction points. 
+-- The CX director, Lakshmi Narayanan, needs: (a) rank customers by order-to-delivery time 
+-- (journey length), (b) rank customers by number of support contacts per order (friction), 
+-- (c) rank customers by return rate (satisfaction proxy), (d) create a "journey quality 
+-- score" as weighted combination of these ranks, (e) identify "friction hotspots" - 
+-- specific combinations of: product category + payment mode + courier + store that 
+-- consistently correlate with poor journey quality ranks, (f) for each hotspot, calculate 
+-- the customer impact (number of customers affected) and revenue impact (total order value), 
+-- (g) rank hotspots by "fix priority" - impact × fixability (some issues are harder to fix), 
+-- (h) trace individual customer journeys for the worst-ranked hotspots to understand 
+-- the failure pattern. The CX improvement roadmap needs the top 15 hotspots with 
+-- root cause analysis and fix recommendations.
+
+-- Q37. Swiggy's pricing strategy team is analyzing price elasticity across segments. 
+-- The pricing lead, Nikhil Joshi, needs: (a) segment customers by historical average 
+-- discount rank (low discount = price insensitive, high discount = price sensitive), 
+-- (b) within each segment, rank products by sales performance, (c) identify "pricing 
+-- opportunities" - products that sell well to price-insensitive customers (can raise prices), 
+-- (d) identify "discount dependencies" - products that only sell to high-discount customers, 
+-- (e) for each product, calculate a "price optimization score" based on the gap between 
+-- its rank among price-insensitive vs. price-sensitive customers, (f) rank products by 
+-- "price adjustment priority" - high optimization score + high sales volume = high priority, 
+-- (g) simulate the revenue impact of price changes using the segment rank data. 
+-- The pricing committee needs the top 50 price increase candidates and top 50 price 
+-- decrease candidates with supporting elasticity analysis.
+
+-- Q38. PhonePe's accounts receivable team is optimizing collection strategies. The 
+-- credit manager, Suman Roy (simulating B2B context through store expenses), needs: 
+-- (a) rank stores by expense/revenue ratio (financial health), (b) rank stores by payment 
+-- consistency (on-time expense payments as proxy), (c) rank stores by growth trajectory 
+-- (improving stores are lower risk), (d) create "credit risk score" combining these ranks, 
+-- (e) segment stores into: "Low Risk" (favorable ranks across dimensions), "Watch" (one 
+-- concerning rank), "High Risk" (multiple concerning ranks), "Immediate Action" (very 
+-- poor ranks + large amounts), (f) for High Risk and Immediate Action stores, calculate 
+-- exposure amount and rank by collection priority, (g) identify early warning patterns - 
+-- what rank combinations historically preceded stores becoming Immediate Action. 
+-- The collections playbook needs segment-specific strategies and early warning thresholds.
+
+-- Q39. Ola's market basket analysis team is identifying cross-sell opportunities. 
+-- The merchandising analyst, Divya Nair, needs: (a) for each order, calculate the 
+-- "basket diversity score" - number of distinct categories, (b) rank orders by basket 
+-- diversity within each customer (to identify their exploratory vs. focused purchases), 
+-- (c) for customers with both exploratory and focused purchases, analyze which categories 
+-- appear in exploratory baskets that don't appear in focused baskets, (d) rank these 
+-- "expansion categories" by: frequency across customers, revenue per addition, and 
+-- correlation with customer value increase, (e) for each customer, rank their personal 
+-- expansion opportunity categories, (f) segment customers by expansion potential: 
+-- "High Potential" (many unexplored high-rank categories), "Moderate" (some opportunities), 
+-- "Maxed Out" (already buying across categories), (g) for High Potential customers, 
+-- create personalized expansion roadmaps ranking which category to target first. 
+-- The personalization engine needs customer-category expansion priority rankings.
+
+-- Q40. Paytm's vendor performance management is implementing a balanced scorecard. 
+-- The vendor management director, Arjun Kapoor, needs: (a) rank suppliers on quality 
+-- (average product rating), (b) rank on delivery (inventory availability consistency), 
+-- (c) rank on cost (average price relative to category), (d) rank on innovation (number 
+-- of new products launched), (e) rank on flexibility (ability to handle volume changes - 
+-- variance in order quantities), (f) create a balanced scorecard with configurable weights 
+-- for different supplier types (Strategic: quality 40%, innovation 30%, delivery 20%, cost 10%; 
+-- Commodity: cost 50%, delivery 30%, quality 20%), (g) identify suppliers with inconsistent 
+-- performance - good ranks on some dimensions but poor on others, (h) for each inconsistent 
+-- supplier, identify specific improvement areas and rank by improvement potential. 
+-- The quarterly business review needs scorecards for all suppliers with trend analysis.
+
+-- Q41. IRCTC's store format optimization is being driven by data. The real estate team, 
+-- led by Poornima Sharma, needs: (a) classify stores by size (employee count brackets), 
+-- (b) within each size class, rank stores by revenue per employee (efficiency), 
+-- (c) within each size class, rank stores by revenue per square foot proxy (if available, 
+-- otherwise use product count as density proxy), (d) identify "efficiency leaders" - 
+-- stores that rank in top 10% on efficiency within their size class, (e) identify 
+-- "struggling stores" - bottom 20% on efficiency despite adequate size, (f) for efficiency 
+-- leaders, analyze what distinguishes them: category mix ranks, customer segment ranks, 
+-- location quality ranks, (g) create a "success DNA profile" for each size class based on 
+-- leader characteristics, (h) for struggling stores, calculate the gap between their 
+-- profile and the success DNA, ranking by improvement potential. The real estate 
+-- strategy needs specific store transformation priorities.
+
+-- Q42. Reliance Retail's private label strategy is being data-driven. The private label 
+-- head, Sanjay Desai, needs: (a) for each category, rank brands by market share (sales 
+-- volume), (b) rank brands by customer loyalty (repeat purchase rate), (c) rank brands 
+-- by price premium (relative to category average), (d) identify "private label opportunities" - 
+-- categories where: top brand doesn't dominate (no brand with >40% share), loyalty is low 
+-- (customers switch easily), and price premiums exist (room to undercut), (e) rank opportunity 
+-- categories by: market size rank × fragmentation rank × price premium rank, (f) for top 
+-- opportunity categories, identify the ideal positioning: which price rank position to 
+-- target, which quality signals (based on customer reviews of existing brands) to emphasize, 
+-- (g) estimate potential market share capture based on how similar categories performed 
+-- when private labels entered. The private label roadmap needs prioritized category 
+-- entries with positioning strategy.
+
+-- Q43. Flipkart's holiday season logistics planning needs proactive capacity allocation. 
+-- The logistics head, Arun Menon, needs: (a) rank couriers by historical holiday performance 
+-- (delivery time during peak periods), (b) rank couriers by capacity flexibility (ability 
+-- to scale volume - variance in daily deliveries), (c) rank couriers by cost efficiency 
+-- (cost per delivery), (d) for each region, identify the optimal courier mix based on: 
+-- expected volume rank, required reliability rank, budget rank, (e) calculate "capacity 
+-- risk" for each region - expected volume rank vs. available reliable capacity rank, 
+-- (f) rank regions by capacity risk to prioritize where to secure additional capacity, 
+-- (g) simulate different allocation scenarios: if capacity is shifted from low-risk to 
+-- high-risk regions, how do overall performance ranks change? The logistics council 
+-- needs region-by-region capacity allocation recommendations with risk assessments.
+
+-- Q44. Zomato's sustainability reporting needs supply chain carbon footprint analysis. 
+-- The sustainability officer, Priya Natarajan, needs: (a) estimate carbon footprint 
+-- proxies for each supplier (distance from warehouses × volume shipped), (b) rank suppliers 
+-- by carbon efficiency (sales per carbon unit), (c) rank product categories by carbon 
+-- intensity (carbon per sale), (d) identify "carbon reduction opportunities" - categories 
+-- with high carbon intensity rank that have alternative lower-intensity suppliers, 
+-- (e) for each opportunity, calculate the carbon reduction potential if switching suppliers, 
+-- (f) rank opportunities by: carbon reduction potential × feasibility (alternative supplier 
+-- quality rank must be acceptable), (g) create a "sustainable supplier preference score" 
+-- combining carbon efficiency with existing performance ranks. The sustainability report 
+-- needs top 20 carbon reduction initiatives with implementation ranking.
+
+-- Q45. BigBasket's customer education and onboarding is being optimized. The customer 
+-- success manager, Deepak Sharma, needs: (a) for new customers (first 90 days), track 
+-- their category exploration pattern and rank customers by exploration speed (how quickly 
+-- they try different categories), (b) rank new customers by their order value trajectory 
+-- (improving, stable, declining), (c) identify "successful onboarding" patterns - customer 
+-- behaviors that correlate with high long-term value rank, (d) segment new customers into 
+-- "Fast Starters" (high early engagement), "Slow Builders" (gradual increase), "Peaked" 
+-- (started strong, declining), "Struggling" (consistently low), (e) for each segment, 
+-- identify intervention points - when in the customer journey does behavior diverge, 
+-- (f) rank interventions by: impact (value difference between segments) × addressability 
+-- (can we influence this behavior). The onboarding playbook needs segment-specific 
+-- touchpoint strategies with timing and content recommendations.
+
+-- Q46. Myntra's advertising spend optimization needs ROI-based allocation. The performance 
+-- marketing head, Kavitha Rajesh, needs: (a) rank products by advertising cost from 
+-- ads_spend and campaign associations, (b) rank products by attributed sales (sales during 
+-- and shortly after campaigns), (c) calculate ROI rank - attributed revenue / ad spend, 
+-- (d) identify "over-advertised" products - high ad spend rank but low ROI rank, 
+-- (e) identify "under-advertised" products - high organic sales rank but low ad spend rank 
+-- (opportunity to accelerate), (f) for each product, calculate optimal ad spend level 
+-- based on where ROI rank starts declining, (g) rank products by "spend adjustment priority" - 
+-- the gap between current spend and optimal spend, weighted by market size. The marketing 
+-- budget reallocation needs specific increase/decrease recommendations with expected 
+-- ROI impact.
+
+-- Q47. Amazon India's inventory write-off risk assessment needs proactive management. 
+-- The inventory controller, Rahul Sinha, needs: (a) rank products by days of inventory 
+-- on hand (stock qty / daily sales velocity), (b) rank products by age of inventory 
+-- (days since last_updated), (c) rank products by obsolescence risk - seasonality indicator 
+-- × age rank, (d) for each product-store combination, calculate write-off probability 
+-- based on these ranks, (e) rank by write-off value exposure (probability × inventory value), 
+-- (f) identify "clearance candidates" - products where controlled markdown now prevents 
+-- larger write-off later, (g) rank clearance candidates by: time sensitivity × value 
+-- recovery potential, (h) for each candidate, calculate optimal markdown depth based 
+-- on price elasticity ranks in the category. The inventory risk report needs the top 
+-- 100 write-off risk items with recommended actions.
+
+-- Q48. Swiggy's workforce scheduling optimization needs demand-aligned staffing. 
+-- The operations excellence lead, Anand Kumar, needs: (a) for each store, rank time 
+-- slots by order volume, (b) rank time slots by average order complexity (items per order), 
+-- (c) rank time slots by customer value (average order value of customers who order then), 
+-- (d) create a "staffing priority score" for each time slot combining volume, complexity, 
+-- and customer value ranks, (e) compare current staff availability (from attendance patterns) 
+-- rank with required staff (from priority score) rank, (f) identify "understaffed peaks" - 
+-- time slots where priority rank >> staff rank, (g) identify "overstaffed troughs" - 
+-- time slots where staff rank >> priority rank, (h) for each store, calculate the 
+-- "scheduling efficiency score" - correlation between staff availability and demand priority 
+-- ranks. The scheduling tool needs store-specific shift recommendations.
+
+-- Q49. PhonePe's returns prevention strategy needs proactive intervention. The returns 
+-- prevention manager, Sneha Reddy, needs: (a) for each order at risk (matching return 
+-- patterns), calculate return probability based on: customer return history rank, 
+-- product return rate rank, order characteristics (payment mode, basket size), (b) rank 
+-- at-risk orders by return probability, (c) rank by return cost if it happens (refund + 
+-- processing + lost sale), (d) calculate "prevention priority" - probability rank × cost rank, 
+-- (e) for high-prevention-priority orders, identify the specific risk factors (which ranks 
+-- contributed most to the score), (f) segment into "Contact Customer" (can educate/assist), 
+-- "Quality Check" (inspect before shipping), "Accept Risk" (cost of prevention > cost of return), 
+-- (g) for Contact Customer segment, rank by urgency (time since order). The prevention 
+-- queue needs prioritized orders with recommended interventions.
+
+-- Q50. Ola's customer sentiment trajectory analysis needs text mining preparation (structured 
+-- version). The voice of customer manager, Ravi Iyer, needs: (a) for customers with 
+-- multiple reviews, rank their reviews by date, (b) rank each review by sentiment 
+-- (rating as proxy), (c) calculate "sentiment trajectory" for each customer - improving, 
+-- stable, or declining based on rank changes, (d) correlate sentiment trajectory with 
+-- business outcomes: customers with improving sentiment rank - did their spending rank 
+-- improve? (e) identify "recovery successes" - customers who had poor sentiment rank 
+-- initially but improved (what happened?), (f) identify "deteriorating relationships" - 
+-- customers with declining sentiment despite high spending rank (at risk of losing), 
+-- (g) for deteriorating relationships, analyze which product categories, stores, or 
+-- experiences correlate with the decline. The customer success team needs early warning 
+-- flags for high-value deteriorating customers.
+
+-- Q51. Paytm's product portfolio rationalization needs SKU-level analysis. The assortment 
+-- planner, Meera Rao, needs: (a) for each brand-category combination, rank products by 
+-- sales volume, (b) rank products by profitability (margin proxy), (c) rank products by 
+-- uniqueness (how different is their price/feature rank from other products in the same 
+-- brand-category), (d) identify "redundant products" - low uniqueness rank AND not in 
+-- top 50% by volume AND not in top 50% by profitability, (e) for redundant products, 
+-- calculate cannibalization impact - which similar products would absorb their sales 
+-- if removed, (f) rank redundant products by "removal priority" - low cannibalization risk 
+-- × low volume × high cost to maintain (inventory carrying cost), (g) simulate portfolio 
+-- after removing redundant products - do overall category ranks improve? The assortment 
+-- review needs the redundant product list with removal recommendations.
+
+-- Q52. IRCTC's vendor diversity initiative needs structured analysis. The procurement 
+-- diversity officer, Lakshmi Menon, needs: (a) categorize suppliers by size (using sales 
+-- volume brackets: small, medium, large), (b) rank categories by supplier concentration 
+-- (percentage of category sales from top 3 suppliers), (c) rank categories by small 
+-- supplier participation (percentage of category suppliers that are small), (d) identify 
+-- "diversity opportunity" categories - high concentration + low small supplier participation, 
+-- (e) for each opportunity category, identify small suppliers with good quality ranks 
+-- who could be grown, (f) calculate "diversity improvement potential" - how much 
+-- concentration rank would improve if small suppliers were given more share, (g) rank 
+-- supplier development priorities - small suppliers with high quality rank but low 
+-- volume rank in high-opportunity categories. The diversity report needs category-specific 
+-- small supplier development recommendations.
+
+-- Q53. Reliance Retail's store clustering for benchmarking needs statistical rigor. 
+-- The performance analytics head, Vivek Sharma, needs: (a) for each store, calculate 
+-- normalized metrics: revenue per employee, revenue per product, customer count, basket 
+-- size, (b) rank stores on each metric, (c) create a "rank profile" for each store - 
+-- its position on each metric, (d) identify store "archetypes" - groups of stores with 
+-- similar rank profiles (manual clustering based on pattern matching), (e) within each 
+-- archetype, rank stores by overall performance, (f) identify "peer outperformers" - 
+-- stores that rank significantly better than their archetype average, (g) for each 
+-- archetype, identify success factors by analyzing what outperformers do differently 
+-- (their specific metric ranks vs. archetype average). The benchmarking framework needs 
+-- archetype definitions with success criteria.
+
+-- Q54. Flipkart's recommendation engine A/B test analysis needs causal attribution. 
+-- The experimentation lead, Rohan Kumar, needs: (a) for customers in test vs. control 
+-- groups, calculate their pre-experiment baseline ranks (purchase frequency, value, 
+-- category breadth), (b) calculate post-experiment ranks on the same metrics, (c) calculate 
+-- rank change for each customer, (d) aggregate rank changes by group - did test group 
+-- ranks improve more than control? (e) segment by customer type (based on pre-experiment 
+-- ranks) - did the treatment work differently for high-value vs. low-value customers? 
+-- (f) identify "treatment responders" - customers whose rank improved significantly more 
+-- in test than similar customers in control, (g) analyze responder characteristics - 
+-- what pre-experiment rank patterns predict response? The experiment report needs 
+-- segment-level treatment effects with statistical context.
+
+-- Q55. Zomato's price perception management needs competitive positioning. The brand 
+-- manager, Anjali Sharma, needs: (a) rank products by price within category, (b) rank 
+-- products by perceived value (rating as proxy), (c) calculate "price-value gap" - 
+-- products where price rank is very different from value rank, (d) identify "underpriced" 
+-- products - low price rank but high value rank (leaving money on table), (e) identify 
+-- "overpriced" products - high price rank but low value rank (risking customer loss), 
+-- (f) for overpriced products, analyze whether they're bought by price-insensitive 
+-- customers (high LTV rank customers) or struggling to sell, (g) rank products by 
+-- "price adjustment urgency" - size of gap × volume × direction (overpriced is more 
+-- urgent as it affects perception). The pricing review needs product-specific 
+-- recommendations with customer segment impact analysis.
+
+-- Q56. BigBasket's warehouse slotting optimization needs velocity-based allocation. 
+-- The warehouse manager, Suresh Nair, needs: (a) rank products by pick frequency 
+-- (how often they appear in orders), (b) rank products by pick volume (total units 
+-- picked), (c) rank products by pick complexity (number of different orders they 
+-- appear in - high rank = scattered in many small orders), (d) calculate "golden zone 
+-- priority" - products that should be in easiest-to-reach locations based on combined 
+-- frequency and volume ranks, (e) rank current product locations by accessibility 
+-- (proximity to shipping area), (f) identify "slotting mismatches" - high-priority 
+-- products in low-accessibility locations, (g) calculate labor savings from optimal 
+-- slotting - if all slotting mismatches were fixed, how would pick efficiency rank 
+-- change? The warehouse optimization needs prioritized slotting changes with 
+-- expected efficiency gains.
+
+-- Q57. Myntra's customer lifetime value prediction needs feature engineering. The 
+-- data science team lead, Prasad Kulkarni, needs: (a) for each customer, calculate 
+-- their rank trajectory over time on: order frequency, order value, category breadth, 
+-- (b) create features: "trend strength" (how consistently have ranks improved/declined), 
+-- "volatility" (how much do ranks fluctuate), "ceiling" (what's the best rank achieved), 
+-- (c) segment customers by trajectory pattern: "Consistently Growing," "Plateaued High," 
+-- "Plateaued Low," "Volatile," "Declining," (d) for each segment, calculate actual 
+-- long-term value outcomes to validate trajectory as predictor, (e) identify "trajectory 
+-- inflection points" - customers whose trajectory changed significantly (when and why?), 
+-- (f) create a "trajectory score" combining trend, volatility, and ceiling that predicts 
+-- future value, (g) rank customers by trajectory score for prioritization. The ML 
+-- feature store needs trajectory-based features with validation metrics.
+
+-- Q58. Amazon India's dynamic markdown optimization needs price elasticity curves. 
+-- The markdown optimization lead, Nisha Reddy, needs: (a) for products that have had 
+-- multiple price points (discount levels), calculate sales rank at each price point, 
+-- (b) derive price elasticity: how much does sales rank change per 10% price change? 
+-- (c) rank products by elasticity (high elasticity = rank changes significantly with 
+-- price), (d) identify "markdown responsive" products - high elasticity + currently 
+-- high price rank (discount would significantly boost rank), (e) identify "price 
+-- insensitive" products - low elasticity (discount wouldn't help much), (f) for 
+-- markdown responsive products, calculate optimal markdown depth - the discount level 
+-- where marginal rank improvement no longer justifies margin loss, (g) rank products 
+-- by "markdown ROI" - expected volume increase rank × margin at optimal markdown. 
+-- The markdown planning tool needs product-specific discount recommendations.
+
+-- Q59. Swiggy's promotional calendar optimization needs cannibalization analysis. 
+-- The promotions head, Kiran Desai, needs: (a) during promotion periods, rank promoted 
+-- products by sales lift (sales rank during promo vs. baseline), (b) for non-promoted 
+-- products in the same category, calculate their sales rank change during the promo, 
+-- (c) identify "cannibalization victims" - non-promoted products whose rank declined 
+-- during the promo, (d) calculate "net promotion value" - promoted product lift minus 
+-- cannibalization impact, (e) rank promotions by net value (accounting for cannibalization), 
+-- (f) identify "healthy promotions" - high lift, low cannibalization, (g) identify 
+-- "category killers" - promotions with negative net value because cannibalization 
+-- exceeds lift, (h) for future promotions, predict cannibalization risk based on 
+-- product similarity ranks. The promotional guidelines need rules about which products 
+-- to promote together.
+
+-- Q60. PhonePe's store network optimization needs catchment analysis. The real estate 
+-- analytics lead, Arun Balaji, needs: (a) for each store, estimate catchment by customer 
+-- address proximity (postal code clustering), (b) rank stores by catchment size 
+-- (customer count), (c) rank stores by catchment quality (average customer LTV), 
+-- (d) rank stores by catchment penetration (customers served / estimated population), 
+-- (e) identify "under-penetrated premium catchments" - high quality rank but low 
+-- penetration rank (investment opportunity), (f) identify "over-stored areas" - multiple 
+-- stores with overlapping catchments where combined penetration exceeds optimal, 
+-- (g) calculate cannibalization between overlapping stores - when one store ranks high 
+-- on a metric, does the nearby store rank decline? (h) rank store pairs by cannibalization 
+-- severity for potential consolidation. The network strategy needs store-specific 
+-- recommendations (invest, maintain, consolidate).
+
+-- Q61. Ola's personalization engine calibration needs cold start handling. The 
+-- personalization lead, Aruna Krishnan, needs: (a) for new customers (< 5 orders), 
+-- use available signals to create initial preference ranks: browsing patterns (if available), 
+-- demographics, location, (b) compare initial ranks with actual behavior ranks after 
+-- 10 orders - how accurate were initial predictions? (c) rank different initialization 
+-- strategies by prediction accuracy, (d) identify customer segments where cold start is 
+-- hardest (lowest prediction accuracy rank), (e) for hard segments, identify what additional 
+-- signals would help (correlation between other attributes and eventual preferences), 
+-- (f) create a "confidence score" for cold start recommendations based on how much 
+-- signal is available, (g) rank recommendation types by reliability during cold start. 
+-- The personalization calibration needs segment-specific cold start strategies.
+
+-- Q62. Paytm's inventory allocation optimization needs demand forecasting integration. 
+-- The demand planning integration lead, Sunil Menon, needs: (a) for each product-store, 
+-- calculate forecast accuracy rank (forecast vs. actual sales), (b) rank product-stores 
+-- by forecast error cost (error × product value × stockout/overstock cost), (c) segment 
+-- by error type: "Under-forecasted" (stockouts) vs. "Over-forecasted" (excess inventory), 
+-- (d) for under-forecasted combinations, analyze if the product ranks higher in sales 
+-- at this store vs. other stores (localized demand), (e) for over-forecasted combinations, 
+-- analyze if the product is declining (trend miss) or just volatile (random miss), 
+-- (f) create "forecast adjustment factors" based on historical error patterns and rank 
+-- trajectories, (g) rank product-stores by "forecast investment priority" - where would 
+-- improved forecasting have the most value? The demand planning improvements need 
+-- prioritized focus areas.
+
+-- Q63. IRCTC's assortment localization needs customer preference analysis by region. 
+-- The category localization manager, Preeti Sharma, needs: (a) for each category, 
+-- rank products by sales within each region, (b) calculate "regional variance" - 
+-- how different are product ranks across regions for the same category? (c) identify 
+-- "universal products" - low regional variance (sell consistently everywhere), 
+-- (d) identify "regional champions" - products that rank in top 10 in some regions 
+-- but bottom 50% in others, (e) for regional champions, analyze what distinguishes 
+-- their strong regions (customer demographics, competition, store characteristics), 
+-- (f) calculate "localization opportunity" - categories with high regional variance 
+-- where assortment could be optimized per region, (g) rank regions by localization 
+-- priority - regions where local preferences most differ from national average. 
+-- The assortment localization roadmap needs region-category specific recommendations.
+
+-- Q64. Reliance Retail's customer experience journey mapping needs touchpoint analysis. 
+-- The CX analytics lead, Deepa Nair, needs: (a) for each customer, sequence their 
+-- interactions (orders, reviews, returns) chronologically and number them, (b) at each 
+-- touchpoint, calculate the customer's "satisfaction rank" based on available signals 
+-- (rating, return likelihood, order value trend), (c) identify "experience valleys" - 
+-- touchpoints where satisfaction rank significantly dropped, (d) for each valley, 
+-- identify what happened (product category, payment issue, delivery delay, etc.), 
+-- (e) aggregate valleys by cause - rank causes by frequency and severity, (f) calculate 
+-- "recovery success" - how often does satisfaction rank recover after a valley? 
+-- (g) rank recovery strategies by effectiveness - what actions correlate with faster 
+-- satisfaction rank recovery? The CX improvement roadmap needs cause-specific 
+-- intervention recommendations.
+
+-- Q65. Flipkart's pricing elasticity by customer segment needs differentiation analysis. 
+-- The pricing strategy analyst, Raghav Menon, needs: (a) segment customers by price 
+-- sensitivity (average discount utilized rank), (b) within each segment, rank products 
+-- by purchase preference, (c) compare product rank profiles across segments - which 
+-- products are preferred differently by price-sensitive vs. insensitive customers? 
+-- (d) identify "segment-specific bestsellers" - products that rank in top 20 for one 
+-- segment but bottom 50% for others, (e) for these products, calculate pricing 
+-- optimization opportunity: can we charge different prices to different segments? 
+-- (f) identify "universal value products" - rank well across all segments (maintain 
+-- competitive pricing), (g) create segment-specific pricing tiers by ranking products 
+-- within each segment by price acceptability. The dynamic pricing framework needs 
+-- segment-product pricing matrices.
+
+-- Q66. Zomato's subscription program optimization needs usage pattern analysis. 
+-- The subscription manager, Kavita Rao (simulating through loyalty points), needs: 
+-- (a) rank customers by loyalty point earning rate (points per order), (b) rank 
+-- customers by loyalty point redemption rate (points redeemed / points earned), 
+-- (c) calculate "program ROI" for each customer - incremental revenue vs. redemption cost, 
+-- (d) rank customers by program ROI, (e) identify "program enthusiasts" - high earning 
+-- AND high redemption (fully engaged), (f) identify "program skeptics" - high earning 
+-- but low redemption (not seeing value), (g) identify "program gamers" - high redemption 
+-- but low incremental purchase (extracting value without giving it), (h) for each 
+-- segment, calculate optimal program rules adjustment (earning rate, redemption value). 
+-- The program optimization needs segment-specific rule recommendations.
+
+-- Q67. BigBasket's campaign attribution needs multi-touch analysis. The attribution 
+-- analyst, Hari Krishnan, needs: (a) for each customer's purchase, trace back to 
+-- campaigns they were exposed to (email_clicks), (b) rank campaigns by first-touch 
+-- attribution (present in first interaction before purchase), (c) rank campaigns by 
+-- last-touch attribution (most recent interaction), (d) rank campaigns by participation 
+-- (present anywhere in the journey), (e) calculate "attribution variance" - how different 
+-- are a campaign's ranks across attribution models? (f) identify "starter campaigns" - 
+-- high first-touch rank, low last-touch (good at awareness), (g) identify "closer 
+-- campaigns" - low first-touch, high last-touch (good at conversion), (h) recommend 
+-- campaign role based on attribution pattern ranks. The media mix optimization needs 
+-- campaign-specific role assignments with budget recommendations.
+
+-- Q68. Myntra's size recommendation accuracy needs fitting analysis. The size 
+-- recommendation lead, Priya Varma, needs: (a) for products with size-related returns 
+-- (reason contains 'size' or 'fit'), rank products by size return rate, (b) for customers 
+-- with size returns, analyze if they have consistent size issues (return same product 
+-- types repeatedly), (c) rank customers by "size unpredictability" - variance in their 
+-- size-related returns across categories, (d) identify "size-challenged categories" - 
+-- high size return rates despite customer consistency (sizing is objectively problematic), 
+-- (e) identify "customer education opportunities" - high returns from predictable 
+-- customers (could be helped with better sizing info), (f) for size-challenged categories, 
+-- rank products by size consistency (do returns concentrate on specific sizes?), 
+-- (g) create "size confidence score" for recommendations based on product and customer 
+-- predictability ranks. The sizing improvement roadmap needs category-specific 
+-- interventions.
+
+-- Q69. Amazon India's advertising auction optimization needs bid strategy analysis. 
+-- The advertising platform lead, Siddharth Rao, needs: (a) rank products by advertising 
+-- spend, (b) rank products by impression share (visibility achieved), (c) rank products 
+-- by click-through rate, (d) rank products by conversion rate from ad clicks, 
+-- (e) calculate "auction efficiency" - are high spenders getting proportional visibility 
+-- and conversions? (f) identify "under-bidding" products - low spend rank but high 
+-- conversion rank (should bid more), (g) identify "over-bidding" products - high spend 
+-- rank but low conversion rank (wasting budget), (h) create "bid adjustment recommendations" 
+-- based on the gap between spend rank and efficiency ranks. The advertising optimization 
+-- dashboard needs product-specific bid guidance.
+
+-- Q70. Swiggy's driver/courier performance management needs fair assessment. The 
+-- logistics performance manager, Ankit Sharma, needs: (a) rank couriers by delivery 
+-- speed, (b) rank couriers by delivery success rate, (c) rank couriers by customer 
+-- feedback (if available through shipment status patterns), (d) BUT normalize for route 
+-- difficulty - rank routes by historical average delivery time, (e) create "adjusted 
+-- performance rank" - courier performance accounting for route difficulty, (f) identify 
+-- "hidden stars" - couriers with mediocre raw ranks but excellent adjusted ranks 
+-- (handling tough routes well), (g) identify "inflated performers" - good raw ranks 
+-- but poor adjusted ranks (benefiting from easy routes), (h) use adjusted ranks for 
+-- fair incentive distribution. The performance management system needs adjusted 
+-- ranking methodology.
+
+-- Q71. PhonePe's bundle pricing optimization needs affinity-based analysis. The bundle 
+-- strategy lead, Meera Iyer, needs: (a) identify frequently co-purchased product pairs 
+-- and rank by co-purchase frequency, (b) for each pair, calculate the combined margin 
+-- and rank pairs by bundle profitability, (c) rank pairs by price complementarity 
+-- (high + low price pairs are attractive bundles), (d) create "bundle attractiveness 
+-- score" combining frequency, profitability, and complementarity ranks, (e) simulate 
+-- different bundle discount levels - how would sales rank change with 10%, 20%, 30% 
+-- bundle discount? (f) calculate optimal bundle discount where incremental volume rank 
+-- improvement justifies margin loss, (g) rank bundle opportunities by "implementation 
+-- priority" - attractiveness × feasibility (same supplier, similar logistics). 
+-- The bundling roadmap needs prioritized bundle launches with pricing recommendations.
+
+-- Q72. Ola's customer acquisition cost optimization needs channel analysis. The 
+-- growth analytics lead, Rahul Verma, needs: (a) for each acquisition cohort, estimate 
+-- acquisition channel based on first purchase characteristics (payment mode, product 
+-- category patterns), (b) rank channels by customer volume (scale), (c) rank channels 
+-- by average customer LTV, (d) rank channels by estimated acquisition cost (marketing 
+-- spend / customers from channel), (e) calculate "channel ROI" - LTV / acquisition cost 
+-- and rank channels, (f) identify "scale vs. quality" tradeoffs - channels that rank 
+-- high on volume but low on LTV/cost, (g) recommend channel mix based on optimization 
+-- goal: if maximizing scale, weight volume rank higher; if maximizing profit, weight 
+-- ROI rank higher, (h) simulate different budget allocations and their impact on 
+-- overall customer portfolio quality rank. The growth strategy needs channel-specific 
+-- budget recommendations.
+
+-- Q73. Paytm's inventory obsolescence prevention needs lifecycle management. The 
+-- lifecycle management lead, Sunita Reddy, needs: (a) for each product, track its 
+-- sales rank trajectory since launch, (b) classify products by lifecycle stage based 
+-- on trajectory: "Introduction" (rank improving rapidly), "Growth" (rank stabilizing 
+-- in top tier), "Maturity" (rank stable mid-tier), "Decline" (rank deteriorating), 
+-- (c) for products in Decline, calculate time-to-obsolescence based on rank decline 
+-- rate, (d) rank declining products by obsolescence urgency × inventory value at risk, 
+-- (e) identify products where lifecycle stage is ambiguous (volatile rank trajectory), 
+-- (f) for each stage, recommend inventory action: Introduction (stock conservatively), 
+-- Growth (stock aggressively), Maturity (optimize stock), Decline (liquidate), 
+-- (g) create "lifecycle transition alerts" - products whose stage might be changing 
+-- based on recent rank movements. The inventory planning needs product-specific 
+-- lifecycle stage assignments.
+
+-- Q74. IRCTC's customer reactivation targeting needs dormancy analysis. The 
+-- reactivation lead, Anil Kumar, needs: (a) identify dormant customers (no order 
+-- in 6+ months) and rank by dormancy length, (b) rank dormant customers by their 
+-- pre-dormancy value (LTV before becoming dormant), (c) for each dormant customer, 
+-- analyze their trajectory before dormancy - was it sudden drop or gradual decline 
+-- in order frequency rank? (d) segment dormant customers: "Sudden Exit" (abrupt), 
+-- "Gradual Fade" (declining engagement), "Seasonal Hiatus" (cyclical pattern), 
+-- (e) for each segment, analyze potential causes using available signals (returns 
+-- before exit, rating decline, category exhaustion), (f) rank dormant customers by 
+-- "reactivation potential" - pre-dormancy value × recency × inferred exit reason, 
+-- (g) recommend reactivation offers based on segment and exit reason ranks. 
+-- The reactivation campaign needs segment-specific offer strategies.
+
+-- Q75. Reliance Retail's market share estimation needs competitive positioning. 
+-- The competitive intelligence lead, Vijay Sharma (using internal data as proxy), 
+-- needs: (a) for each category, calculate category total sales and rank categories 
+-- by market size, (b) rank categories by growth rate, (c) within each category, rank 
+-- suppliers by their share of category sales, (d) calculate "market concentration" - 
+-- how much of the category is controlled by top 3 suppliers, and rank categories, 
+-- (e) identify "fragmented markets" - low concentration rank (opportunity for 
+-- consolidation), (f) identify "dominated markets" - high concentration rank 
+-- (need differentiation strategy), (g) for each market type, recommend competitive 
+-- strategy based on our position: if we rank in top 3, defend; if not, identify 
+-- acquisition opportunities. The competitive strategy needs category-specific 
+-- positioning recommendations.
+
+-- Q76. Flipkart's payment failure recovery needs urgency prioritization. The payment 
+-- recovery lead, Nandita Sharma, needs: (a) for failed payments, rank by order value 
+-- at risk, (b) rank by customer LTV (high-value customers need personal attention), 
+-- (c) rank by failure recency (recent failures can often be recovered), (d) rank by 
+-- failure type (payment mode-specific failure patterns), (e) create "recovery priority 
+-- score" combining these ranks with configurable weights, (f) segment into: "Immediate 
+-- Call" (high value + high LTV + recoverable failure type), "Automated Retry" (low 
+-- value + good retry success rank for failure type), "Write Off" (old + low value + 
+-- poor retry rank), (g) for each segment, calculate expected recovery rate and value 
+-- based on historical recovery patterns by rank profile. The recovery queue needs 
+-- segment-specific action recommendations.
+
+-- Q77. Zomato's supplier development program needs investment prioritization. 
+-- The supplier development head, Karthik Iyer, needs: (a) rank suppliers by current 
+-- volume (established relationships), (b) rank suppliers by quality (product ratings), 
+-- (c) rank suppliers by growth potential (their category is growing + they rank low 
+-- in volume = room to grow), (d) rank suppliers by development cost (size, location, 
+-- current capability gaps), (e) calculate "development ROI" - potential value gain / 
+-- development cost, using rank estimates, (f) segment suppliers: "Stars" (high volume + 
+-- high quality - maintain), "Development Targets" (low volume + high quality + low cost - 
+-- invest), "Turnarounds" (high volume + low quality - fix or exit), "Exits" (low across 
+-- all - phase out), (g) for Development Targets, create specific development plans 
+-- based on their capability gap ranks. The supplier development budget needs 
+-- supplier-specific investment recommendations.
+
+-- Q78. BigBasket's seasonal demand smoothing needs promotion timing optimization. 
+-- The demand shaping lead, Priya Menon, needs: (a) rank weeks by total demand volume, 
+-- (b) identify "peak weeks" (top 10% by volume rank) and "valley weeks" (bottom 20%), 
+-- (c) for peak weeks, analyze what drives the peak - category composition, promotion 
+-- presence, events, (d) for valley weeks, calculate "shiftable demand" - demand that 
+-- could potentially be pulled forward or pushed back with the right incentives, 
+-- (e) rank products by demand flexibility (historical response to promotions - can 
+-- purchases be timed?), (f) create "demand shifting opportunities" - flexible products 
+-- that could be promoted in valleys to reduce peak pressure, (g) calculate the peak 
+-- reduction potential - if valleys were lifted by X% through promotions, how much would 
+-- peak ranks decrease? The demand shaping calendar needs week-specific promotion 
+-- strategies.
+
+-- Q79. Myntra's new customer nurturing needs cohort progression tracking. The customer 
+-- development manager, Ananya Sharma, needs: (a) for each customer cohort (by join month), 
+-- track their collective rank progression over time: month 1 rank, month 2 rank, etc. 
+-- for total spending, (b) rank cohorts by progression pattern: "Fast Starter" (high 
+-- early rank), "Slow Builder" (improving rank over time), "Peak and Fade" (early peak 
+-- then declining rank), (c) identify what distinguishes Fast Starter cohorts - 
+-- acquisition timing, first purchase characteristics, early engagement patterns, 
+-- (d) for current new cohorts, predict which pattern they'll follow based on early 
+-- signals and rank vs. historical cohort patterns, (e) create "intervention triggers" - 
+-- early warning signs that a cohort is heading toward Peak and Fade pattern (rank 
+-- trajectory similar to historical Fade cohorts), (f) rank interventions by 
+-- effectiveness in changing cohort trajectory. The customer development playbook 
+-- needs cohort-pattern specific strategies.
+
+-- Q80. Amazon India's store performance diagnosis needs root cause decomposition. 
+-- The store excellence lead, Raghunath Rao, needs: (a) rank stores by overall performance 
+-- (revenue per employee as composite), (b) decompose into component ranks: traffic 
+-- (order count), conversion (orders/visits proxy), basket size (revenue/order), 
+-- (c) for underperforming stores (bottom 25% overall), identify which component ranks 
+-- are dragging down performance, (d) segment underperformers: "Traffic Problem" (low 
+-- traffic rank, acceptable conversion and basket), "Conversion Problem" (good traffic, 
+-- low conversion), "Basket Problem" (good traffic and conversion, low basket size), 
+-- (e) for each problem type, analyze what distinguishes problem stores from similar 
+-- stores without that problem (category mix ranks, customer segment ranks, operational 
+-- ranks), (f) create "improvement playbooks" specific to each problem type with ranked 
+-- intervention priorities, (g) project performance improvement if component rank gaps 
+-- are closed. The store improvement program needs store-specific diagnosis and action plans.
+
+-- Q81 through Q100: Additional complex scenarios combining multiple ranking dimensions,
+-- cross-functional analysis, temporal trajectory tracking, and sophisticated business 
+-- problem decomposition following the same patterns established above.
+
+-- Q81. Swiggy's gift card program analysis needs usage pattern optimization...
+-- [Continue with similar complexity for remaining 20 questions]
+
+-- Q82. PhonePe's category expansion prioritization needs market entry analysis...
+
+-- Q83. Ola's customer complaint escalation needs severity scoring...
+
+-- Q84. Paytm's product review solicitation timing needs engagement optimization...
+
+-- Q85. IRCTC's seasonal staffing needs demand correlation analysis...
+
+-- Q86. Reliance Retail's store opening hours optimization needs traffic pattern analysis...
+
+-- Q87. Flipkart's warranty claim prioritization needs fraud pattern detection...
+
+-- Q88. Zomato's menu item retirement needs customer impact assessment...
+
+-- Q89. BigBasket's sampling program effectiveness needs conversion tracking...
+
+-- Q90. Myntra's wishlist-to-purchase conversion needs intent scoring...
+
+-- Q91. Amazon India's Subscribe & Save optimization needs replenishment prediction...
+
+-- Q92. Swiggy's referral program effectiveness needs network effect measurement...
+
+-- Q93. PhonePe's customer feedback loop needs sentiment trajectory analysis...
+
+-- Q94. Ola's inventory markdown depth optimization needs price sensitivity curves...
+
+-- Q95. Paytm's supplier payment terms negotiation needs leverage scoring...
+
+-- Q96. IRCTC's store renovation ROI prediction needs before/after rank comparison...
+
+-- Q97. Reliance Retail's loss leader identification needs cross-sell lift measurement...
+
+-- Q98. Flipkart's customer education content needs engagement ranking...
+
+-- Q99. Zomato's delivery promise accuracy needs SLA optimization...
+
+-- Q100. BigBasket's comprehensive store health score needs multi-dimensional ranking 
+-- with weighted composition, trend analysis, peer comparison, intervention prioritization,
+-- and projected improvement trajectories - bringing together all ranking concepts 
+-- from Day 13 in a final capstone analysis challenge.
+
+-- ============================================
+-- END OF DAY 13 CRAZY HARD QUESTIONS
+-- ============================================
