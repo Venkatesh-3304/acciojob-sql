@@ -281,8 +281,12 @@ RETURNS JSON AS $$
 BEGIN
     RETURN (
         SELECT json_agg(json_build_object(
-            'month', month_name, 'shipments', total_shipments, 'delivered', delivered_count,
-            'avgDays', avg_delivery_days, 'onTimePct', on_time_pct, 'slaStatus', sla_status
+            'month', month_name, 
+            'shipments', total_shipments, 
+            'delivered', delivered_count,
+            'avgDeliveryDays', avg_delivery_days,
+            'onTimePct', on_time_pct, 
+            'slaStatus', sla_status
         ) ORDER BY ship_month DESC)
         FROM analytics.vw_delivery_performance
         LIMIT 12
@@ -295,8 +299,13 @@ RETURNS JSON AS $$
 BEGIN
     RETURN (
         SELECT json_agg(json_build_object(
-            'courier', courier_name, 'shipments', total_shipments, 'avgDays', avg_delivery_days,
-            'onTimePct', on_time_pct, 'speedRank', speed_rank, 'reliabilityRank', reliability_rank
+            'courier', courier_name, 
+            'shipments', total_shipments, 
+            'avgDays', avg_delivery_days,
+            'onTimePct', on_time_pct, 
+            'speedRank', speed_rank, 
+            'reliabilityRank', reliability_rank,
+            'performanceScore', ROUND((COALESCE(on_time_pct, 0) * 0.7 + (100 - LEAST(avg_delivery_days * 10, 100)) * 0.3)::NUMERIC, 1)
         ) ORDER BY on_time_pct DESC NULLS LAST)
         FROM analytics.vw_courier_comparison
     );
@@ -306,13 +315,37 @@ $$ LANGUAGE plpgsql STABLE;
 CREATE OR REPLACE FUNCTION analytics.get_return_analysis_json()
 RETURNS JSON AS $$
 BEGIN
-    RETURN (
-        SELECT json_agg(json_build_object(
-            'category', category, 'reason', reason, 'returnCount', return_count,
-            'totalRefunds', total_refunds, 'returnRate', return_rate_pct
-        ) ORDER BY return_count DESC)
-        FROM analytics.vw_return_analysis
-        LIMIT 20
+    RETURN json_build_object(
+        'byCategory', (
+            SELECT json_agg(json_build_object(
+                'category', category,
+                'returnCount', return_count,
+                'totalRefunds', total_refunds,
+                'returnRate', return_rate_pct
+            ) ORDER BY return_count DESC)
+            FROM (
+                SELECT 
+                    category,
+                    SUM(return_count) as return_count,
+                    SUM(total_refunds) as total_refunds,
+                    ROUND(AVG(return_rate_pct)::NUMERIC, 2) as return_rate_pct
+                FROM analytics.vw_return_analysis
+                GROUP BY category
+            ) cat_summary
+        ),
+        'byReason', (
+            SELECT json_agg(json_build_object(
+                'reason', reason,
+                'count', return_count
+            ) ORDER BY return_count DESC)
+            FROM (
+                SELECT 
+                    reason,
+                    SUM(return_count) as return_count
+                FROM analytics.vw_return_analysis
+                GROUP BY reason
+            ) reason_summary
+        )
     );
 END;
 $$ LANGUAGE plpgsql STABLE;
