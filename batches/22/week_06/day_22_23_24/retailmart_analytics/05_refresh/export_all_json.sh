@@ -7,7 +7,7 @@
 
 RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; BLUE='\033[0;34m'; NC='\033[0m'
 
-DB_NAME="${DB_NAME:-retailmart}"
+DB_NAME="${DB_NAME:-retailmart_22}"
 DB_USER="${DB_USER:-postgres}"
 DB_HOST="${DB_HOST:-localhost}"
 DB_PORT="${DB_PORT:-5432}"
@@ -16,7 +16,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 DATA_DIR="$PROJECT_DIR/06_dashboard/data"
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-LOG_FILE="$SCRIPT_DIR/export_log_$TIMESTAMP.txt"
+LOG_FILE="$SCRIPT_DIR/logs/export_log_$TIMESTAMP.txt"
 
 export_json() {
     local fn=$1 out=$2 desc=$3

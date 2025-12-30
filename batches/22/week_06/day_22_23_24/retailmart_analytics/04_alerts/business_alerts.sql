@@ -133,8 +133,7 @@ UNION ALL SELECT alert_type, severity, alert_message, recommended_action, full_n
 UNION ALL SELECT alert_type, severity, alert_message, recommended_action, order_date::TEXT, variance_pct::TEXT FROM analytics.vw_alert_revenue_anomaly
 UNION ALL SELECT alert_type, severity, alert_message, recommended_action, 'Order #' || order_id, days_since_order::TEXT FROM analytics.vw_alert_delayed_shipments
 UNION ALL SELECT alert_type, severity, alert_message, recommended_action, category, return_rate_pct::TEXT FROM analytics.vw_alert_high_return_rate
-UNION ALL SELECT alert_type, severity, alert_message, recommended_action, prod_name, total_stock::TEXT FROM analytics.vw_alert_low_stock
-ORDER BY CASE severity WHEN 'HIGH' THEN 1 WHEN 'MEDIUM' THEN 2 ELSE 3 END;
+UNION ALL SELECT alert_type, severity, alert_message, recommended_action, prod_name, total_stock::TEXT FROM analytics.vw_alert_low_stock;
 
 \echo '      ✓ Consolidated alert view created'
 
