@@ -71,7 +71,6 @@
         Shared the zip file
                 unzip the file
                 open that in vs code
-
         Open the terminal
                 navigate to the project folder if you are not in that
                 to confirm
@@ -81,17 +80,13 @@
                                         01_setup
                                         02_data_quality
                                 we are in correct folder
-
         Now we will execute the each setup one by one
-
         Run setup scripts in order
                 psql -d retailmart_22 -U postgres -f 01_setup/01_create_analytics_schema.sql
                 psql -d retailmart_22 -U postgres -f 01_setup/02_create_metadata_tables.sql
                 psql -d retailmart_22 -U postgres -f 01_setup/03_create_indexes.sql
-
         Run data quality checks
                 psql -d retailmart_22 -U postgres -f 02_data_quality/data_quality_checks.sql
-
         Create analytics views
                 psql -d retailmart_22 -U postgres -f 03_kpi_queries/01_sales_analytics.sql
                 psql -d retailmart_22 -U postgres -f 03_kpi_queries/02_customer_analytics.sql
@@ -99,13 +94,10 @@
                 psql -d retailmart_22 -U postgres -f 03_kpi_queries/04_store_analytics.sql
                 psql -d retailmart_22 -U postgres -f 03_kpi_queries/05_operations_analytics.sql
                 psql -d retailmart_22 -U postgres -f 03_kpi_queries/06_marketing_analytics.sql
-
         Create alerts
                 psql -d retailmart_22 -U postgres -f 04_alerts/business_alerts.sql
-
         Set up refresh functions
                 psql -d retailmart_22 -U postgres -f 05_refresh/refresh_all_analytics.sql
-
         Export JSON data
                 chmod +x 05_refresh/export_all_json.sh
                 ./05_refresh/export_all_json.sh

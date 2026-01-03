@@ -474,15 +474,15 @@ SELECT * FROM analytics.vw_dq_consistency WHERE issue_count > 0
 UNION ALL
 SELECT * FROM analytics.vw_dq_timeliness WHERE issue_count > 0
 UNION ALL
-SELECT * FROM analytics.vw_dq_uniqueness WHERE issue_count > 0
-ORDER BY 
-    CASE severity 
-        WHEN 'CRITICAL' THEN 1 
-        WHEN 'HIGH' THEN 2 
-        WHEN 'MEDIUM' THEN 3 
-        WHEN 'LOW' THEN 4 
-    END,
-    issue_count DESC;
+SELECT * FROM analytics.vw_dq_uniqueness WHERE issue_count > 0;
+-- ORDER BY 
+--     CASE severity 
+--         WHEN 'CRITICAL' THEN 1 
+--         WHEN 'HIGH' THEN 2 
+--         WHEN 'MEDIUM' THEN 3 
+--         WHEN 'LOW' THEN 4 
+--     END,
+--     issue_count DESC;
 
 \echo '      ✓ View created: vw_data_quality_report'
 
