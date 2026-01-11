@@ -2,7 +2,7 @@
 -- FILE: 01_setup/02_create_metadata_tables.sql
 -- PROJECT: RetailMart Enterprise Analytics Platform
 -- PURPOSE: Create metadata tables for tracking KPIs and audit logging
--- AUTHOR: AccioJob SQL Bootcamp
+-- AUTHOR: SQL Bootcamp
 -- CREATED: 2025
 --
 -- DESCRIPTION:

@@ -2,7 +2,7 @@
 -- FILE: 03_kpi_queries/05_operations_analytics.sql
 -- PROJECT: RetailMart Enterprise Analytics Platform
 -- PURPOSE: Operations Analytics - Delivery, Returns, Payments tracking
--- AUTHOR: AccioJob SQL Bootcamp
+-- AUTHOR: SQL Bootcamp
 -- CREATED: 2025
 --
 -- DESCRIPTION:

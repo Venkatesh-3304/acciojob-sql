@@ -2,7 +2,7 @@
 -- FILE: 05_refresh/refresh_all_analytics.sql
 -- PROJECT: RetailMart Enterprise Analytics Platform
 -- PURPOSE: Refresh all materialized views with logging
--- AUTHOR: AccioJob SQL Bootcamp
+-- AUTHOR: SQL Bootcamp
 -- CREATED: 2025
 --
 -- DESCRIPTION:

@@ -2,7 +2,7 @@
 -- FILE: 03_kpi_queries/04_store_analytics.sql
 -- PROJECT: RetailMart Enterprise Analytics Platform
 -- PURPOSE: Store Analytics Module - Store performance and profitability tracking
--- AUTHOR: AccioJob SQL Bootcamp
+-- AUTHOR: SQL Bootcamp
 -- CREATED: 2025
 --
 -- DESCRIPTION:

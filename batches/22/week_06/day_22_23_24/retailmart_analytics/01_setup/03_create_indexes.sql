@@ -2,7 +2,7 @@
 -- FILE: 01_setup/03_create_indexes.sql
 -- PROJECT: RetailMart Enterprise Analytics Platform
 -- PURPOSE: Create performance indexes on source tables for analytics queries
--- AUTHOR: AccioJob SQL Bootcamp
+-- AUTHOR: SQL Bootcamp
 -- CREATED: 2025
 --
 -- DESCRIPTION:

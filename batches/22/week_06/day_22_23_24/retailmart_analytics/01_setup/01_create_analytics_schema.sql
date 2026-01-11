@@ -2,7 +2,7 @@
 -- FILE: 01_setup/01_create_analytics_schema.sql
 -- PROJECT: RetailMart Enterprise Analytics Platform
 -- PURPOSE: Create dedicated analytics schema and configuration
--- AUTHOR: AccioJob SQL Bootcamp
+-- AUTHOR: SQL Bootcamp
 -- CREATED: 2025
 --
 -- DESCRIPTION:

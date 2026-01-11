@@ -2,7 +2,7 @@
 -- FILE: 03_kpi_queries/02_customer_analytics.sql
 -- PROJECT: RetailMart Enterprise Analytics Platform
 -- PURPOSE: Customer Analytics Module - Complete customer behavior tracking
--- AUTHOR: AccioJob SQL Bootcamp
+-- AUTHOR: SQL Bootcamp
 -- CREATED: 2025
 --
 -- DESCRIPTION:

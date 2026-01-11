@@ -2,7 +2,7 @@
 -- FILE: 03_kpi_queries/03_product_analytics.sql
 -- PROJECT: RetailMart Enterprise Analytics Platform
 -- PURPOSE: Product Analytics Module - Complete product performance tracking
--- AUTHOR: AccioJob SQL Bootcamp
+-- AUTHOR: SQL Bootcamp
 -- CREATED: 2025
 --
 -- DESCRIPTION:

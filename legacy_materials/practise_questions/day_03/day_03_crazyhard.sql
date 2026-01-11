@@ -1,12 +1,12 @@
 /* ============================================================
-   ACCIOJOB SQL PRACTICE SET — DAY 3 (CRAZY HARD LEVEL)
+   SQL PRACTICE SET — DAY 3 (CRAZY HARD LEVEL)
    Instructor: Sayyed Siraj Ali
    Topic: Data Onboarding + Constraints & Keys + UPSERT (Expert)
    Scope & Rules (STRICT):
      - Focus ONLY on constraints (NOT NULL, UNIQUE, CHECK, DEFAULT, PK, FK),
        referential actions (ON DELETE/UPDATE ...), and UPSERT patterns.
      - Include advanced topics: DEFERRABLE constraints, deferred checks, transactional onboarding.
-     - DDL/DML → acciojob.daily     |     Read-only SELECT → retailmart
+     - DDL/DML → daily     |     Read-only SELECT → retailmart
      - No joins/filters beyond simple SELECTs for verification (joins proper come later days).
    Structure: 20 Conceptual + 40 Constraint/Key Tasks + 40 Practical/UPSERT Tasks = 100
    ============================================================ */
@@ -182,6 +182,6 @@
    ------------------------------------------------------------
    Instructions:
    - Use transactions and deferred constraints thoughtfully.
-   - Keep DDL/DML in acciojob.daily; retailmart only for read-only checks.
+   - Keep DDL/DML in daily; retailmart only for read-only checks.
    - Comment expected failures and learnings for each guarded test.
 ============================================================ */

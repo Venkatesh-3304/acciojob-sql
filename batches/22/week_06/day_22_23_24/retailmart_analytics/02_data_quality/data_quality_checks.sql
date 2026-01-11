@@ -2,7 +2,7 @@
 -- FILE: 02_data_quality/data_quality_checks.sql
 -- PROJECT: RetailMart Enterprise Analytics Platform
 -- PURPOSE: Data quality validation checks before analytics processing
--- AUTHOR: AccioJob SQL Bootcamp
+-- AUTHOR: SQL Bootcamp
 -- CREATED: 2025
 --
 -- DESCRIPTION:

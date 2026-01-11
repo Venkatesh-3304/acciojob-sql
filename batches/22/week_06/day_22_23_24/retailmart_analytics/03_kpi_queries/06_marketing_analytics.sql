@@ -2,7 +2,7 @@
 -- FILE: 03_kpi_queries/06_marketing_analytics.sql
 -- PROJECT: RetailMart Enterprise Analytics Platform
 -- PURPOSE: Marketing Analytics - Campaign ROI, Promotion effectiveness
--- AUTHOR: AccioJob SQL Bootcamp
+-- AUTHOR: SQL Bootcamp
 -- CREATED: 2025
 -- ============================================================================
 

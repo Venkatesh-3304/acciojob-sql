@@ -2,7 +2,7 @@
 -- FILE: 04_alerts/business_alerts.sql
 -- PROJECT: RetailMart Enterprise Analytics Platform
 -- PURPOSE: Business Alerts - Automated monitoring and anomaly detection
--- AUTHOR: AccioJob SQL Bootcamp
+-- AUTHOR: SQL Bootcamp
 -- CREATED: 2025
 -- ============================================================================
 
