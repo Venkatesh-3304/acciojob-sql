@@ -9,7 +9,7 @@
 
 ## 🎯 Project Overview
 
-This project demonstrates enterprise-grade SQL analytics capabilities, transforming raw retail data into actionable business insights. Built as the capstone project for AccioJob SQL Bootcamp, it showcases real-world data engineering and analytics patterns used at companies like Flipkart, Amazon, and Swiggy.
+This project demonstrates enterprise-grade SQL analytics capabilities, transforming raw retail data into actionable business insights. Built as the capstone project for SQL Bootcamp, it showcases real-world data engineering and analytics patterns used at companies like Flipkart, Amazon, and Swiggy.
 
 ### Key Features
 
@@ -72,17 +72,20 @@ retailmart_analytics_project/
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/yourusername/retailmart-analytics.git
    cd retailmart-analytics
    ```
 
 2. **Create the RetailMart database** (if not exists)
+
    ```sql
    CREATE DATABASE retailmart;
    ```
 
 3. **Run setup scripts in order**
+
    ```bash
    psql -d retailmart -f 01_setup/01_create_analytics_schema.sql
    psql -d retailmart -f 01_setup/02_create_metadata_tables.sql
@@ -90,11 +93,13 @@ retailmart_analytics_project/
    ```
 
 4. **Run data quality checks**
+
    ```bash
    psql -d retailmart -f 02_data_quality/data_quality_checks.sql
    ```
 
 5. **Create analytics views**
+
    ```bash
    psql -d retailmart -f 03_kpi_queries/01_sales_analytics.sql
    psql -d retailmart -f 03_kpi_queries/02_customer_analytics.sql
@@ -105,16 +110,19 @@ retailmart_analytics_project/
    ```
 
 6. **Create alerts**
+
    ```bash
    psql -d retailmart -f 04_alerts/business_alerts.sql
    ```
 
 7. **Set up refresh functions**
+
    ```bash
    psql -d retailmart -f 05_refresh/refresh_all_analytics.sql
    ```
 
 8. **Export JSON data**
+
    ```bash
    chmod +x 05_refresh/export_all_json.sh
    ./05_refresh/export_all_json.sh ./06_dashboard/data
@@ -131,50 +139,56 @@ retailmart_analytics_project/
 ## 📊 Analytics Modules
 
 ### 1. Sales Analytics
-| KPI | Type | Description |
-|-----|------|-------------|
-| Monthly Sales Dashboard | MV | MoM, YoY growth, moving averages |
-| Executive Summary | MV | Top-level KPIs for C-suite |
-| Daily Sales Summary | View | Day-level metrics with DoD growth |
-| Payment Mode Analysis | View | Revenue by payment method |
+
+| KPI                     | Type | Description                       |
+| ----------------------- | ---- | --------------------------------- |
+| Monthly Sales Dashboard | MV   | MoM, YoY growth, moving averages  |
+| Executive Summary       | MV   | Top-level KPIs for C-suite        |
+| Daily Sales Summary     | View | Day-level metrics with DoD growth |
+| Payment Mode Analysis   | View | Revenue by payment method         |
 
 ### 2. Customer Analytics
-| KPI | Type | Description |
-|-----|------|-------------|
-| Customer Lifetime Value | MV | CLV with Platinum/Gold/Silver/Bronze tiers |
-| RFM Analysis | MV | Recency-Frequency-Monetary segmentation |
-| Cohort Retention | MV | Monthly cohort retention rates |
-| Churn Risk | View | High-value customers at risk |
+
+| KPI                     | Type | Description                                |
+| ----------------------- | ---- | ------------------------------------------ |
+| Customer Lifetime Value | MV   | CLV with Platinum/Gold/Silver/Bronze tiers |
+| RFM Analysis            | MV   | Recency-Frequency-Monetary segmentation    |
+| Cohort Retention        | MV   | Monthly cohort retention rates             |
+| Churn Risk              | View | High-value customers at risk               |
 
 ### 3. Product Analytics
-| KPI | Type | Description |
-|-----|------|-------------|
-| Top Products | MV | Products ranked by revenue and units |
-| ABC Analysis | MV | Pareto classification (80/20 rule) |
-| Category Performance | View | Category-level metrics |
-| Inventory Turnover | View | Stock velocity and health |
+
+| KPI                  | Type | Description                          |
+| -------------------- | ---- | ------------------------------------ |
+| Top Products         | MV   | Products ranked by revenue and units |
+| ABC Analysis         | MV   | Pareto classification (80/20 rule)   |
+| Category Performance | View | Category-level metrics               |
+| Inventory Turnover   | View | Stock velocity and health            |
 
 ### 4. Store Analytics
-| KPI | Type | Description |
-|-----|------|-------------|
-| Store Performance | MV | Revenue, profit, efficiency by store |
-| Regional Performance | View | Regional aggregation |
-| Store Inventory Status | View | Inventory health by location |
+
+| KPI                    | Type | Description                          |
+| ---------------------- | ---- | ------------------------------------ |
+| Store Performance      | MV   | Revenue, profit, efficiency by store |
+| Regional Performance   | View | Regional aggregation                 |
+| Store Inventory Status | View | Inventory health by location         |
 
 ### 5. Operations Analytics
-| KPI | Type | Description |
-|-----|------|-------------|
-| Delivery Performance | View | SLA tracking, on-time % |
-| Courier Comparison | View | Courier partner benchmarking |
-| Return Analysis | View | Return rates by category |
-| Payment Success Rate | View | Payment gateway metrics |
+
+| KPI                  | Type | Description                  |
+| -------------------- | ---- | ---------------------------- |
+| Delivery Performance | View | SLA tracking, on-time %      |
+| Courier Comparison   | View | Courier partner benchmarking |
+| Return Analysis      | View | Return rates by category     |
+| Payment Success Rate | View | Payment gateway metrics      |
 
 ### 6. Marketing Analytics
-| KPI | Type | Description |
-|-----|------|-------------|
-| Campaign Performance | View | ROI, CPA, conversion rates |
-| Channel Performance | View | Ad spend efficiency by channel |
-| Promotion Effectiveness | View | Promotion impact analysis |
+
+| KPI                     | Type | Description                    |
+| ----------------------- | ---- | ------------------------------ |
+| Campaign Performance    | View | ROI, CPA, conversion rates     |
+| Channel Performance     | View | Ad spend efficiency by channel |
+| Promotion Effectiveness | View | Promotion impact analysis      |
 
 ## 🚨 Business Alerts
 
@@ -190,6 +204,7 @@ The platform includes 6 proactive alert types:
 ## 🔄 Refresh & Automation
 
 ### Manual Refresh
+
 ```sql
 -- Refresh all materialized views
 SELECT * FROM analytics.fn_refresh_all_analytics();
@@ -202,6 +217,7 @@ SELECT * FROM analytics.fn_get_refresh_status();
 ```
 
 ### Scheduled Refresh (cron)
+
 ```bash
 # Add to crontab for hourly refresh
 5 * * * * /path/to/export_all_json.sh --refresh >> /var/log/analytics.log 2>&1
@@ -237,11 +253,11 @@ This project demonstrates mastery of:
 
 ## 📜 License
 
-This project is created for educational purposes as part of AccioJob SQL Bootcamp.
+This project is created for educational purposes as part of SQL Bootcamp.
 
 ## 👨‍💻 Author
 
-**AccioJob SQL Bootcamp**  
+**SQL Bootcamp**  
 Instructor: Sayyed Siraj Ali
 
 ---

@@ -2,11 +2,12 @@
 
 Created on: 12 Oct 2025  
 Instructor: Shiraj Ahmad  
-Curriculum: AccioJob SQL (6 Weeks)
+Curriculum: SQL Curriculum (6 Weeks)
 
 ---
 
 ### 📘 Folder Overview
+
 ```
 batches/21
 batches/21/week_05_advanced_sql
@@ -39,6 +40,7 @@ batches/21/week_02_aggregation_grouping/day_01
 ---
 
 ### 🧭 Getting Started
+
 1. Open `week_01_foundations_environment/day_01/00_get_started/`
 2. Follow `00_index.md` to install PostgreSQL.
 3. Once ready, open `query.sql` and run your first commands.

@@ -104,3 +104,225 @@ VALUES (NULL, 'Priya Singh', 'priya5@company.com', 'Finance', 800000, '2024-01-2
 
 
 select * from demo_employees;
+
+
+SHOW SEARCH_PATH;
+
+SET
+	SEARCH_PATH TO DAY_04;
+
+CREATE TABLE DEMO_REVIEWS (
+	REVIEW_ID SERIAL,
+	PRODUCT_ID INT NOT NULL,
+	CUSTOMER_ID INT NOT NULL,
+	RATING SMALLINT NOT NULL CHECK (RATING BETWEEN 1 AND 5),
+	REVIEW_TEXT TEXT CHECK (LENGTH(REVIEW_TEXT) >= 10),
+	REVIEW_DATE DATE NOT NULL,
+	HELPFUL_VOTES INT CHECK (HELPFUL_VOTES >= 0)
+);
+
+INSERT INTO
+	DEMO_REVIEWS (
+		PRODUCT_ID,
+		CUSTOMER_ID,
+		RATING,
+		REVIEW_TEXT,
+		REVIEW_DATE
+	)
+VALUES
+	(
+		101,
+		5002,
+		5,
+		'Good product overall',
+		'2024-01-16'
+	);
+
+INSERT INTO
+	DEMO_REVIEWS (
+		PRODUCT_ID,
+		CUSTOMER_ID,
+		RATING,
+		REVIEW_TEXT,
+		REVIEW_DATE
+	)
+VALUES
+	(101, 5003, 4, 'Nice!', '2024-01-17');
+
+SELECT
+	*
+FROM
+	DEMO_REVIEWS;
+
+
+CREATE TABLE USERS (
+	USER_ID SERIAL,
+	USERNAME VARCHAR(50) NOT NULL UNIQUE,
+	EMAIL VARCHAR(100) NOT NULL UNIQUE,
+	PASSWORD_HASH VARCHAR(255) NOT NULL,
+	ACCOUNT_STATUS VARCHAR(20) DEFAULT 'Active',
+	ACCOUNT_TYPE VARCHAR(20) DEFAULT 'Free',
+	IS_PROFILE_COMPLETE BOOLEAN DEFAULT FALSE,
+	LOGIN_COUNT INT DEFAULT 0,
+	CREATED_AT TIMESTAMP DEFAULT NOW()
+);
+
+INSERT INTO users (username, email, password_hash,account_type)
+VALUES ('tech_rahul', 'rahul@gmail.com', 'hashed_password_123',NULL);
+
+select * from users;
+
+
+CREATE TABLE DEMO_STORES (
+	STORE_ID SERIAL PRIMARY KEY,
+	STORE_NAME VARCHAR(120) NOT NULL,
+	STORE_CODE VARCHAR(10) UNIQUE NOT NULL,
+	CITY VARCHAR(50) NOT NULL,
+	STATE VARCHAR(50) NOT NULL,
+	OPENING_DATE DATE,
+	MONTHLY_RENT NUMERIC(12, 2)
+);
+
+INSERT INTO
+	DEMO_STORES (
+		STORE_NAME,
+		STORE_CODE,
+		CITY,
+		STATE,
+		OPENING_DATE,
+		MONTHLY_RENT
+	)
+VALUES
+	(
+		'D-Mart Andheri',
+		'DM-MUM-001',
+		'Mumbai',
+		'Maharashtra',
+		'2020-03-15',
+		250000.00
+	),
+	(
+		'D-Mart Whitefield',
+		'DM-BLR-001',
+		'Bangalore',
+		'Karnataka',
+		'2019-08-20',
+		180000.00
+	);
+
+
+INSERT INTO demo_stores (store_id, store_name, store_code, city, state)
+VALUES (1, 'D-Mart Pune', 'DM-PUN-001', 'Pune', 'Maharashtra');
+
+
+CREATE TABLE DEMO_INVENTORY (
+	STORE_ID INT,
+	PROD_ID INT,
+	STOCK_QUANTITY INT NOT NULL DEFAULT 0 CHECK (STOCK_QUANTITY >= 0),
+	REORDER_LEVEL INT DEFAULT 10,
+	MAX_STOCK INT DEFAULT 100,
+	LAST_UPDATED_AT TIMESTAMP DEFAULT NOW(),
+	PRIMARY KEY (STORE_ID, PROD_ID)
+);
+
+INSERT INTO demo_inventory (store_id, prod_id, stock_quantity, reorder_level, max_stock) VALUES
+(1, 101, 45, 10, 100),   
+(1, 102, 120, 20, 200),  
+(2, 101, 30, 10, 80),    
+(1, 101, 150,30,null)
+
+
+-- Step 1: Create PARENT table first (departments)
+CREATE TABLE DEMO_DEPARTMENTS (
+	DEPT_ID SERIAL PRIMARY KEY,
+	DEPT_NAME VARCHAR(50) NOT NULL UNIQUE,
+	DEPT_HEAD VARCHAR(100),
+	BUDGET NUMERIC(14, 2)
+);
+
+-- Step 2: Create CHILD table with foreign key (employees)
+CREATE TABLE DEMO_EMP (
+	EMP_ID SERIAL PRIMARY KEY,
+	EMP_NAME VARCHAR(100) NOT NULL,
+	EMAIL VARCHAR(100) UNIQUE NOT NULL,
+	SALARY NUMERIC(12, 2),
+	DEPT_ID INT REFERENCES DEMO_DEPARTMENTS (DEPT_ID)
+);
+
+-- Step 3: Insert departments FIRST
+INSERT INTO
+	DEMO_DEPARTMENTS (DEPT_NAME, DEPT_HEAD, BUDGET)
+VALUES
+	('Engineering', 'Rajesh Kumar', 5000000.00),
+	('Marketing', 'Priya Sharma', 2000000.00);
+
+INSERT INTO
+	DEMO_EMP (EMP_NAME, EMAIL, SALARY, DEPT_ID)
+VALUES
+	('Amit Singh', 'amit@wipro.com', 800000, 1), -- Engineering
+	('Sneha Gupta', 'sneha@wipro.com', 700000, 2);
+
+-- Marketing
+INSERT INTO
+	DEMO_EMP (EMP_NAME, EMAIL, SALARY, DEPT_ID)
+VALUES
+	('Mohan Singh', 'mohan@wipro.com', 800000, 3);
+
+DELETE FROM DEMO_DEPARTMENTS
+WHERE
+	DEPT_ID = 1;
+
+
+CREATE TABLE demo_posts_ (
+    post_id SERIAL PRIMARY KEY,
+    title VARCHAR(200) NOT NULL,
+    content TEXT,
+    author_name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE demo_comments_ (
+    comment_id SERIAL PRIMARY KEY,
+    post_id INT NOT NULL,
+    commenter_name VARCHAR(100) NOT NULL,
+    comment_text TEXT NOT NULL,
+    FOREIGN KEY (post_id) REFERENCES demo_posts_(post_id) ON DELETE restrict
+);
+
+
+-- Insert post and comments
+INSERT INTO demo_posts_ (title, content, author_name)
+VALUES ('SQL Tips', 'Here are some tips...', 'Siraj Sir');
+
+INSERT INTO demo_comments_ (post_id, commenter_name, comment_text) VALUES
+(1, 'Rahul', 'Great article!'),
+(1, 'Priya', 'Very helpful!');
+
+
+select * from demo_posts_;
+select * from demo_comments_;
+
+DELETE FROM demo_posts;
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
