@@ -1,101 +1,101 @@
 supplier_id,supplier_name,contact_name,city,email
-1,"Banerjee, Mandal and Naik",Yasti Bhalla,Mehsana,birlogan@chaudry.com
-2,"Keer, Chanda and Parsa",Hamsini Bumb,Tiruvottiyur,tailornandini@bhatia.biz
-3,"Dubey, Chakraborty and Johal",Nathan D’Alia,Ambattur,dakshbajwa@kar.com
-4,Kanda and Sons,Laksh Tella,North Dumdum,brandhawa@mann.biz
-5,"Bir, Baria and Iyengar",Sathvik Karpe,Chennai,faris95@gala.com
-6,"Amble, Manda and Lata",Yasti Rama,Panihati,gaurika35@ramaswamy-dar.com
-7,Balakrishnan-Sehgal,Samarth Goyal,Kalyan-Dombivli,vchhabra@iyengar.com
-8,"Kala, Mitter and Patel",Chatura Karpe,Bellary,mukherjeeadvik@golla.com
-9,Rama-Narang,Mahika Gandhi,Nangloi Jat,yuvraj19@acharya.org
-10,Apte LLC,Chavvi Saxena,Tezpur,gunbirbera@kale-halder.biz
-11,"Pradhan, Borra and Mammen",Anthony Mishra,Jamshedpur,lucky47@dara.com
-12,Ghosh-Atwal,Gabriel Keer,Adoni,anamika09@bhatnagar-dua.com
-13,Rao Ltd,Ayushman Barad,Bhiwani,lsachar@basu.com
-14,Manda-Srinivas,Amara Bajwa,Maheshtala,saraagarwal@basu.com
-15,"Batta, Mangat and Patla",Jhalak Shan,Tinsukia,kashviprabhu@zachariah.com
-16,Ghosh-Ratti,Unni Palan,Siliguri,xreddy@chadha-kulkarni.com
-17,Parmer-Shukla,Nitesh Basak,Guna,haritazachariah@dutta.biz
-18,Saini Inc,Zinal Chawla,Rohtak,utkarshnatt@dada-nanda.com
-19,"Rana, Virk and Ramaswamy",Indali Reddy,Kamarhati,sdugal@acharya.com
-20,Dhawan-Bora,Wyatt Ravi,Bhagalpur,halderarjun@balasubramanian.com
-21,Grewal Ltd,Ekalinga Kulkarni,Kochi,qparmar@anne-mital.com
-22,Prasad-Joshi,Priya Sridhar,Pallavaram,tataekaja@balasubramanian-kumer.info
-23,Yohannan-Chaudhari,Indali Swaminathan,Nadiad,suragabriel@krishnan-chanda.com
-24,Chandra Group,Geetika Khurana,Visakhapatnam,dayita87@roy.com
-25,"Dave, Bala and Toor",Ekapad Thakkar,Madhyamgram,lipika80@dalal-varughese.info
-26,Seth LLC,Balveer Mannan,Purnia,dubeyfaraj@subramaniam.com
-27,Ram Ltd,Krisha Bassi,South Dumdum,harinitak@saxena.com
-28,Gala and Sons,Arjun Sarma,Ambarnath,tbail@pillay.info
-29,Mallick Group,Ekalinga Bhattacharyya,Firozabad,vaishnavi68@devan.com
-30,Chadha PLC,Ronith Sehgal,Proddatur,vanya12@sachdev.com
-31,Din LLC,Mahika Apte,Allahabad,chowdhuryamaira@wali.com
-32,Kohli-Srinivasan,Ranbir Soman,Nangloi Jat,hardikgera@bobal-dhingra.com
-33,"Dhillon, Bir and Sridhar",Nitesh Koshy,Mirzapur,adwetaray@sankaran.com
-34,Bala-Hans,Mahika Sengupta,Warangal,aupadhyay@dugar.com
-35,Borde-Sant,Omisha Bhatti,Ulhasnagar,pinglearunima@mand-shetty.com
-36,Wason-Narain,Upma Vaidya,Kharagpur,upasnanazareth@suri.net
-37,"Bhatnagar, Krishnamurthy and Loyal",Bhavya Varghese,Satara,wriddhish93@mohan-handa.com
-38,"Sabharwal, Mallick and Lalla",Raghav Dewan,Jhansi,ekani37@venkatesh.com
-39,"Koshy, Jha and Nazareth",Watika Prasad,Katni,kmadan@yogi-om.com
-40,Bora-Krishnan,Krisha Ramaswamy,Jabalpur,aachaltalwar@malhotra-vaidya.org
-41,Issac-Lata,Prisha Suri,Fatehpur,uram@dey.com
-42,Bhagat-Barman,Arunima Chokshi,Warangal,sampathsamarth@bhasin.com
-43,Malhotra-Mane,Wridesh Kashyap,Tadipatri,irya32@nadig.com
-44,Jani-Badal,Gavin Madan,Amravati,koshyniharika@khurana.org
-45,Ghose and Sons,Hredhaan Aggarwal,Aizawl,craju@kata.com
-46,Sawhney-Savant,Leena Rai,Hosur,samesh76@oommen.info
-47,"Rama, Sathe and Jha",Maanas Brahmbhatt,Gulbarga,njohal@pandit-ravel.com
-48,Mannan and Sons,Upasna Bajwa,Amritsar,ybains@pai.com
-49,Sarin-Sehgal,Gaurav Sarkar,Karnal,amrutaperi@srinivas-dugar.com
-50,Varughese PLC,Balhaar Raj,Nashik,gautamdutt@bedi.com
-51,"Kumer, Sethi and Dixit",Lucky Sarin,Gaya,nimratmuni@verma.com
-52,Ben PLC,Bhavya Singhal,Rourkela,anayhayre@bose.com
-53,Walla Inc,Jyoti Gola,Deoghar,yatananand@garg-magar.net
-54,Tella PLC,Meera Deshmukh,Nashik,idugal@pillai.com
-55,Korpal-Sha,Imaran Kothari,Medininagar,bhavsarkrishna@acharya.info
-56,"Suri, Rana and Raval",Zinal Pandya,Chandrapur,gganesan@date-bansal.com
-57,Pillai LLC,Nitara Raja,Dewas,arjun57@babu.biz
-58,"Din, Sengupta and Dey",Meghana Konda,Pune,revakrishnan@rastogi-shukla.info
-59,Jayaraman-Sheth,Ojasvi Behl,Ulhasnagar,merchantkavya@palla.biz
-60,"Sant, Brahmbhatt and Menon",Yauvani Sood,Nangloi Jat,pandeygarima@mukherjee.com
-61,Chaudhuri and Sons,Darpan Bakshi,Saharsa,arjun76@sharma-palan.org
-62,Mane-Pillai,Zansi Dasgupta,Morbi,cvarkey@toor.biz
-63,Sarraf-Loke,Lucky Hegde,Tadepalligudem,zmajumdar@barman.com
-64,Deol and Sons,Rishi Sahni,Purnia,shivansh01@barad.info
-65,Kanda Group,Wakeeta Comar,Jaunpur,kashish74@narayanan.com
-66,"Venkatesh, Mallick and Korpal",Anthony Saraf,Darbhanga,yashodhara47@ravel.com
-67,Divan PLC,Theodore Kothari,Jamnagar,tiwarijanani@ratta-saini.org
-68,Mistry-Bumb,Nicholas Srivastava,Satara,sarinnidra@dube-sachdeva.info
-69,Nath LLC,Darika Keer,Pallavaram,zkala@keer-mangat.com
-70,"Gala, Nayar and Dutta",Krisha Butala,Gwalior,anandmason@sangha.com
-71,Agate Group,Bachittar Deol,Ambarnath,gagan02@narayanan-chaudhry.com
-72,"Butala, Baral and Acharya",Onkar Raman,Moradabad,bishakha98@mane.com
-73,Lad-Dugar,Watika Kapur,Patna,qnigam@solanki.com
-74,"Mohan, Memon and Rattan",Wahab More,Bhagalpur,triyadixit@dubey.com
-75,"Dalal, Divan and Chokshi",Jonathan Dixit,Ichalkaranji,ekaja93@subramaniam.com
-76,"Mittal, Kadakia and Solanki",Januja Dugar,Nellore,dominic00@ramachandran-grover.info
-77,Rao-Naik,Kiaan Narain,Satna,abhimanyugala@sagar-chander.info
-78,Divan-Basak,Wriddhish Varghese,Alwar,pranitsahni@andra.com
-79,"Oza, Pradhan and Nazareth",Henry Subramanian,Rajpur Sonarpur,gaurangitiwari@wali-raman.net
-80,"Hegde, Saran and Baral",Bina Yohannan,Varanasi,gaurangi06@bhatnagar.info
-81,"Kashyap, Murty and Kapoor",Alka Mital,Berhampur,megha40@karnik.info
-82,Ranganathan Inc,Champak Borra,Jorhat,gbabu@mohan.org
-83,Walla Ltd,Jack Keer,Kishanganj,peter83@sanghvi.com
-84,"Korpal, Srinivasan and Bail",Kai Kuruvilla,Jalna,ojasvi26@gade.com
-85,More-Biswas,Nachiket Dara,Mathura,madanpraneel@seth.com
-86,"Warrior, Shroff and Vaidya",Vasana Mall,Raurkela Industrial Township,panditpatrick@gulati-krishna.com
-87,"Chadha, Bhatnagar and Gaba",Hema Dyal,Nangloi Jat,ayushman56@chawla-vala.biz
-88,Ganesh and Sons,Ekalinga Karan,Proddatur,uram@pillay.com
-89,Guha-Aggarwal,Anay Pradhan,Vijayanagaram,murtyubika@desai.org
-90,"Dada, Deshpande and Solanki",Harini Dar,Ratlam,devikayadav@memon-barad.com
-91,Mital Ltd,Aarna Raghavan,Parbhani,nisha18@borde-tara.com
-92,"Mital, Ray and Bajaj",Bhavani Narang,Tiruchirappalli,harishpatil@chandran.com
-93,Dasgupta-Goswami,Farhan Kata,Bally,fariq89@mishra.biz
-94,Muni Group,Gauri Luthra,Durgapur,chandraaayush@sood.info
-95,Ravi-Chhabra,Nathan Kota,Thanjavur,qasimchawla@badal.com
-96,Upadhyay and Sons,Abdul Virk,Gangtok,waidakhanna@sani.org
-97,"Rama, Hans and Wable",Hemangini Deshpande,Gudivada,rmani@dash.biz
-98,Tank-Agarwal,Nidra Halder,Warangal,jagdishkothari@baria.com
-99,"Batra, Bora and Rana",Tejas Malhotra,Ramgarh,kadeindrajit@atwal.com
-100,Sekhon and Sons,Jatin Pillay,Bulandshahr,rvenkataraman@sawhney-jaggi.com
+1,Lata-Sule,Ladli Dubey,Anantapur,gautamvaidya@setty.com
+2,Bera-Gopal,Jai Singh,Rajkot,mkale@kalla-grewal.com
+3,Gopal-Gera,Tanish Sabharwal,Salem,qnarain@borra.net
+4,"Dhawan, Khalsa and Ganesan",Januja Konda,Imphal,amara61@sheth-tailor.com
+5,Ramaswamy LLC,Anmol Natarajan,Nizamabad,ldada@sarna-agate.com
+6,"Ghosh, Sarraf and Boase",Christopher Narula,Kavali,fvyas@chowdhury.com
+7,Venkataraman and Sons,Manthan Bala,Guntur,mekhala08@ghose.com
+8,Suresh-Shroff,Ikshita Kade,Kottayam,qasim38@bhat-baria.com
+9,Mall LLC,Lipika Bumb,Bhubaneswar,wbhavsar@kade.org
+10,Bajaj and Sons,Ijaya Bajwa,Avadi,vanyamalhotra@vaidya.org
+11,Ahluwalia PLC,Upma Butala,Guntakal,mchander@dhillon.com
+12,"Dora, Doshi and D’Alia",Nakul Dalal,Alappuzha,ddewan@chakraborty.com
+13,Rau-Cheema,Pratyush Barman,Tadipatri,sekhonlaban@oza.com
+14,Kala Inc,Reyansh Sankar,Naihati,agastyagola@mitra-verma.com
+15,Manda and Sons,Gautam Mane,Proddatur,ivohra@anand-narain.com
+16,Mangat Group,Anay Hari,Etawah,zbhatti@agarwal.com
+17,"Taneja, Badal and Chatterjee",Sudiksha Dani,Bally,paniniparmer@narain.biz
+18,De-Kala,Aashi Borde,Indore,vasatikabhagat@dasgupta-pathak.org
+19,Srinivas and Sons,Arunima Bhasin,Khora ,savantfrederick@sandhu-bains.biz
+20,De and Sons,Hredhaan Oommen,Bhilwara,abhimanyukapadia@mangal.com
+21,Badal PLC,Nidra Taneja,Arrah,nmorar@prabhakar.org
+22,"Pall, Prabhu and Mane",Orinder Koshy,Nangloi Jat,devanzayan@saraf-agate.com
+23,Bhargava Inc,Balvan Johal,Haridwar,harishsengupta@majumdar-chana.info
+24,Sampath PLC,Agastya Varughese,Ambarnath,jchhabra@balasubramanian.com
+25,Chad-Hayre,Nilima Sethi,Shahjahanpur,shereveer@buch-batta.com
+26,Wali-Majumdar,Charita Iyengar,Akola,hegdearyan@saran.com
+27,"Wable, Pant and Sekhon",Pushti Kulkarni,Ludhiana,jaiahluwalia@issac-iyer.org
+28,Dugar-Sarraf,Rajeshri Ramesh,Jalgaon,panditdevansh@khosla.com
+29,Bhandari LLC,Oeshi Sandal,Bijapur,aryan11@sekhon.info
+30,"Sibal, Dash and Krishnan",Anmol Lala,Tinsukia,madanaarush@krish-bhatti.com
+31,Basak LLC,Chameli Taneja,Medininagar,pkapur@issac.org
+32,Dara-Sachdeva,Brinda Chaudry,Eluru,dixittarak@mangat-bawa.info
+33,Lata-Kothari,Owen Naidu,South Dumdum,yutikamann@comar.com
+34,"Lalla, Gandhi and Sankar",Atharv Kala,Faridabad,kzachariah@chakraborty.com
+35,Bala Ltd,Girish Chacko,Uluberia,hdin@saxena.net
+36,"Mann, Trivedi and Balasubramanian",Mohini Lad,Deoghar,naveendara@parekh-vig.net
+37,"Kaul, Sarraf and Tripathi",Raksha Apte,Ghaziabad,ladchakradhar@som-nagarajan.info
+38,"Chander, Gole and Gulati",Frederick Mistry,Mysore,dugaryasti@madan-gandhi.org
+39,"Sampath, Thaman and Dora",Manya Sood,Shimoga,pantveer@dalal.org
+40,Chowdhury-Pant,Chaitanya Talwar,Belgaum,rmander@kapur.com
+41,Sharma PLC,Qabil Master,Mahbubnagar,nmandal@rajagopal-kothari.com
+42,"Sanghvi, Bal and Lata",Yasti Muni,Amritsar,japte@nigam.com
+43,Parekh PLC,Niharika Maharaj,Mumbai,amairawarrior@walia-thaker.com
+44,"Barman, Sarin and Devan",Megha Srinivasan,Hajipur,bbir@bhatnagar.com
+45,Kala Inc,Ishita Gade,Vellore,kaultanay@reddy-acharya.com
+46,Kothari Inc,Ekani Vaidya,Rewa,anthony25@mittal-tandon.com
+47,Dash-Chatterjee,Eesha Balay,Ramagundam,ayaan96@bhatnagar-singhal.info
+48,"Bhattacharyya, Varty and Date",Benjamin Agate,Surendranagar Dudhrej,gunbirmagar@savant.biz
+49,"Cheema, Kara and Narain",Meera Puri,Bongaigaon,nyohannan@randhawa.org
+50,"Sarraf, Muni and Toor",Devika Chana,Mau,dipta01@deshmukh.org
+51,"Gole, Bhardwaj and Sridhar",Yatin Raj,Etawah,bobalurvi@sami.com
+52,Yogi PLC,Sarthak Sama,Kulti,gdass@lad.org
+53,Raghavan Group,Chandran Bakshi,Bhavnagar,zashil20@puri-prashad.com
+54,"Saran, Sankar and Tank",Chandresh Narain,Firozabad,akshaymukhopadhyay@sampath-patla.info
+55,Oak-Yogi,Shravya Morar,Korba,yashawinibalakrishnan@de-kibe.com
+56,Ravel-Raj,Qarin Sahota,Ramagundam,chopramekhala@natt.com
+57,Sandal and Sons,Jagat Gill,Durg,siyasangha@som-mukhopadhyay.biz
+58,Mutti PLC,Madhavi Bala,Vijayawada,avnichaudhry@pradhan.com
+59,"Varughese, Rama and Bhasin",Alexander Chokshi,Giridih,tsrivastava@datta-hayre.com
+60,Parmar Group,Anjali Sehgal,Alappuzha,nitesh61@choudhry.com
+61,Wadhwa LLC,Varenya Oommen,Chinsurah,libni80@palla-ganguly.com
+62,Varkey-Gill,Joshua Dasgupta,Ambala,zehaan54@balay.biz
+63,Mody-Pillai,Unni Nigam,Thiruvananthapuram,choudhurylogan@dube.info
+64,Yogi-Swamy,Shravya Sarma,Tiruppur,chaayaganesan@gara-balasubramanian.com
+65,"Yohannan, Raghavan and Gara",Vaishnavi Pandya,Hosur,bhavsarlila@barman.com
+66,"Hayer, Bali and Raju",Ekta Thakur,Shimoga,gangakarpe@arora-banik.com
+67,"Biswas, Randhawa and Sastry",Yashasvi Mangat,Khandwa,orinder44@parsa-lal.com
+68,Bera-Wali,Janaki Bhatti,Madanapalle,shravyachhabra@nagi.org
+69,Din PLC,Yadavi Vala,Siwan,lsandal@varkey.com
+70,Srivastava-Deol,Henry Mahal,Durgapur,krisha30@zachariah.biz
+71,"Krishnan, Gill and Loyal",Samar Kara,Ujjain,wazirchauhan@chowdhury.net
+72,Balan-Ramanathan,Shivansh Gera,Gangtok,oliverdhingra@basu.com
+73,Karpe and Sons,Amol Bhatnagar,Surendranagar Dudhrej,hraghavan@balan.org
+74,"Srivastava, Raju and Dara",Fiyaz Merchant,Serampore,schander@keer.com
+75,Kohli-Chada,Vasudha Majumdar,Jamalpur,robertmurty@rege-mutti.com
+76,Aggarwal and Sons,Tanvi Raval,Delhi,arya59@sarma-borde.com
+77,Batra Group,Madhavi Sami,Tiruchirappalli,aryamaya@mistry-chadha.com
+78,"Kar, Manda and Agarwal",Ekiya Chaudhry,Srikakulam,upasna08@aurora.biz
+79,Jain-Menon,Krishna Warrior,Kozhikode,ysharaf@wable.net
+80,Venkatesh-Dani,Vedhika Bora,Ludhiana,pushti25@brahmbhatt-sha.biz
+81,Khalsa and Sons,Gagan Deo,Secunderabad,kvig@grover.com
+82,Ahluwalia PLC,Liam Bora,Karimnagar,yashvi51@sur-shan.com
+83,"Chana, Devi and Sura",Lekha Goyal,Jalandhar,avnichanda@rau.com
+84,Gaba and Sons,Gaurika Vala,Hospet,lallajeevika@deo-cheema.net
+85,Memon-Pradhan,Chakradev Nagar,Dibrugarh,aarnavdhaliwal@peri.com
+86,"Badami, Bawa and Bhatnagar",Theodore Oommen,Panipat,sharafonveer@deshpande.info
+87,Thakur and Sons,Ati Ahluwalia,Hubli–Dharwad,pvenkatesh@goswami.info
+88,Chana and Sons,Elijah Ramachandran,Chennai,dbhatti@bhargava-chand.com
+89,"Prabhu, Agarwal and Gokhale",Ikbal Chadha,Gaya,vbuch@patil.info
+90,Deshpande and Sons,Bachittar Shere,Chinsurah,alexander07@chadha-thaman.org
+91,Narang-Memon,Lohit Vig,Haridwar,nitarapadmanabhan@kurian.info
+92,Sachdev Ltd,Yutika Dhaliwal,Panihati,fitan31@kuruvilla.com
+93,Pandey PLC,Tristan Goswami,Bhind,tanay57@viswanathan-khurana.com
+94,Salvi PLC,Nidra Mahajan,Agra,msem@kanda.net
+95,"Hayer, Mitter and Goel",Vedant Raja,Machilipatnam,champaknarayanan@bera-sehgal.info
+96,Bedi-Ramaswamy,Saumya Nayak,Vijayawada,mekhala23@goswami.net
+97,Nair-Chhabra,Wakeeta More,Ghaziabad,kaurharish@chaudhry.net
+98,Chandran-Bahl,Falguni Merchant,Pali,goelom@bajwa.com
+99,Loyal-Chacko,Aadi Butala,South Dumdum,ymurthy@parikh.com
+100,Bedi-Brar,Indrajit Nazareth,South Dumdum,aashi79@balay-sarma.com

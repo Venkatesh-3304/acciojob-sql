@@ -55,12 +55,8 @@ dist/
 
 # Instructor-only local materials
 curriculum_core/
-docs/templates/sh
-docs/templates/setup/
-docs/scripts/
-docs/json/
 datasets_old/
-docs/notes/
+docs/
 **/logs
 
 

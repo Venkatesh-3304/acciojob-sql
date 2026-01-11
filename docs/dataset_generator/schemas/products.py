@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from faker import Faker
 import random
+from datetime import timedelta
 from ..utils import write_csv
 
 fake = Faker('en_IN')
@@ -83,5 +84,24 @@ def generate_products(config, output_dir, dim_category, dim_brand, df_stores):
     pairs['reorder_level'] = np.random.randint(10, 50, size=len(pairs))
     
     write_csv(pairs, output_dir / "products" / "inventory.csv")
+    
+
+    
+    # 4. Promotions
+    print("  ... Promotions")
+    n_promo = config["products"]["n_promotions"]
+    promos = []
+    for i in range(n_promo):
+        sd = fake.date_between(start_date='-2y', end_date='today')
+        promos.append({
+            "promo_id": i + 1,
+            "promo_name": fake.catch_phrase().split()[0] + " Sale",
+            "discount_percent": random.choice([5, 10, 15, 20, 25, 50]),
+            "start_date": sd,
+            "end_date": sd + timedelta(days=random.randint(3, 15)),
+            "active": random.choice([True, False])
+        })
+    df_promos = pd.DataFrame(promos)
+    write_csv(df_promos, output_dir / "products" / "promotions.csv")
     
     return df_products, pairs

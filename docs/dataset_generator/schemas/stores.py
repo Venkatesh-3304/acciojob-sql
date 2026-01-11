@@ -62,4 +62,27 @@ def generate_stores(config, output_dir, dim_region, dim_dept):
     df_employees = pd.DataFrame(emp_data)
     write_csv(df_employees, output_dir / "stores" / "employees.csv")
     
+    # Store Expenses (Maintenance, Utilities, etc specifically for stores)
+    print("  Construction Store Expenses...")
+    n_store_exp = config["stores"]["n_expenses"]
+    
+    # We can reuse basic expense categories or have specific store ones
+    STORE_EXP_TYPES = ["Cleaning", "Electricity", "Water", "Repair", "Security", "Internet"]
+    
+    store_exp_data = []
+    # Dates for last year
+    exp_dates = [fake.date_between(start_date='-1y', end_date='today') for _ in range(n_store_exp)]
+    
+    for i in range(n_store_exp):
+        store_exp_data.append({
+            "store_expense_id": i + 1,
+            "store_id": random.randint(1, n_stores),
+            "expense_type": random.choice(STORE_EXP_TYPES),
+            "amount": round(np.random.uniform(50, 10000), 2),
+            "expense_date": exp_dates[i]
+        })
+        
+    df_store_exp = pd.DataFrame(store_exp_data)
+    write_csv(df_store_exp, output_dir / "stores" / "expenses.csv")
+    
     return df_stores, df_employees

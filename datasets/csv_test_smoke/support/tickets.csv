@@ -1,0 +1,101 @@
+ticket_id,customer_id,agent_id,category,priority,status,created_date,resolved_date,subject
+1,453,30,Login Issue,Medium,Closed,2025-07-18,2025-07-23 16:00:00,Login Issue - Ea quaerat nulla pariatur.
+2,371,16,Payment Failure,Critical,Resolved,2025-04-11,2025-04-13 18:00:00,Payment Failure - Nobis blanditiis id.
+3,47,17,Login Issue,Low,Closed,2025-04-30,,Login Issue - Reprehenderit a eligendi nesciunt.
+4,258,29,Payment Failure,High,Closed,2025-07-05,2025-07-08 12:00:00,Payment Failure - Quaerat eum.
+5,467,1,Login Issue,Low,Closed,2025-03-19,,Login Issue - Blanditiis eius accusantium.
+6,398,24,Payment Failure,Low,Open,2024-05-17,2024-05-21 04:00:00,Payment Failure - Nobis ratione molestias.
+7,431,22,Payment Failure,Medium,Resolved,2025-10-11,2025-10-15 08:00:00,Payment Failure - Aspernatur molestiae perspiciatis.
+8,287,19,Return Request,Medium,Closed,2024-10-18,2024-10-23 08:00:00,Return Request - Fugit quisquam quisquam qui aliquam.
+9,170,18,Account Update,High,Resolved,2024-07-28,2024-07-31 14:00:00,Account Update - Fuga reprehenderit mollitia placeat eius.
+10,258,9,Payment Failure,Medium,In Progress,2025-11-14,2025-11-16 00:00:00,Payment Failure - Optio modi.
+11,290,5,Return Request,Medium,Open,2025-11-27,2025-12-04 00:00:00,Return Request - Corrupti eum.
+12,164,24,Account Update,High,Open,2024-07-29,,Account Update - Praesentium at temporibus eligendi ipsa.
+13,190,22,Order Status,Medium,Open,2025-10-24,,Order Status - Dignissimos dignissimos dolores quam consequatur.
+14,304,17,Login Issue,Medium,In Progress,2025-01-22,2025-01-23 02:00:00,Login Issue - Ut non.
+15,313,30,Payment Failure,Low,Closed,2025-01-30,2025-01-30 20:00:00,Payment Failure - Error sed magnam magni.
+16,459,22,Return Request,Critical,In Progress,2024-05-03,,Return Request - Quis saepe.
+17,95,14,Payment Failure,Low,Closed,2025-07-14,2025-07-15 20:00:00,Payment Failure - Aliquam quam non laboriosam.
+18,227,29,Order Status,Low,Open,2024-05-03,2024-05-05 01:00:00,Order Status - Nisi aliquam.
+19,64,25,Login Issue,Low,Closed,2024-03-08,2024-03-14 10:00:00,Login Issue - Nobis nostrum molestiae.
+20,256,23,Account Update,Low,Resolved,2025-04-19,2025-04-25 13:00:00,Account Update - Suscipit eligendi dolore at perspiciatis.
+21,172,27,Return Request,Medium,Open,2024-12-23,2024-12-26 03:00:00,Return Request - Repellat fugiat atque.
+22,252,7,Account Update,Low,Resolved,2025-03-31,,Account Update - Eius excepturi aliquid cum id.
+23,178,23,Return Request,Medium,Closed,2024-12-11,2024-12-17 04:00:00,Return Request - Omnis beatae omnis.
+24,89,19,Account Update,Critical,Closed,2025-06-04,2025-06-07 09:00:00,Account Update - Eos iste.
+25,228,10,Account Update,Critical,In Progress,2025-09-28,,Account Update - Corporis et nobis.
+26,204,4,Return Request,Critical,Resolved,2025-09-15,2025-09-20 14:00:00,Return Request - Perspiciatis labore veritatis facilis.
+27,228,20,Account Update,High,Resolved,2025-05-12,2025-05-15 18:00:00,Account Update - Eos quas vero.
+28,229,1,Payment Failure,Medium,In Progress,2024-11-23,2024-11-24 07:00:00,Payment Failure - Sint perspiciatis.
+29,383,22,Product Defect,Medium,Resolved,2024-11-25,2024-11-28 08:00:00,Product Defect - Ullam tempora aspernatur.
+30,457,20,Account Update,High,Closed,2025-07-19,2025-07-25 08:00:00,Account Update - Enim quia.
+31,478,14,Account Update,Low,In Progress,2025-03-02,2025-03-04 12:00:00,Account Update - Nemo quas nemo in recusandae.
+32,72,28,Order Status,Low,In Progress,2025-03-18,2025-03-24 02:00:00,Order Status - Voluptatum consequatur illum dolorum.
+33,310,23,Product Defect,Low,Open,2025-08-23,2025-08-29 10:00:00,Product Defect - Fugiat a doloremque accusamus quibusdam.
+34,283,24,Order Status,High,Resolved,2024-04-04,2024-04-06 03:00:00,Order Status - Qui error.
+35,434,15,Login Issue,Medium,Closed,2025-03-26,2025-03-29 22:00:00,Login Issue - Fugiat repellat tenetur.
+36,267,18,Product Defect,High,Closed,2024-11-12,2024-11-17 02:00:00,Product Defect - Dolor harum.
+37,74,23,Order Status,Critical,Resolved,2025-05-01,2025-05-05 15:00:00,Order Status - Aliquid unde amet dolores.
+38,123,19,Login Issue,High,Open,2025-11-08,,Login Issue - Id inventore ab aliquid.
+39,343,24,Account Update,Critical,Resolved,2026-01-08,,Account Update - Suscipit assumenda odio eaque ab.
+40,392,26,Login Issue,Critical,Resolved,2025-10-09,2025-10-09 02:00:00,Login Issue - Nesciunt ab dolor aliquam blanditiis.
+41,280,7,Order Status,Low,Open,2025-07-30,2025-08-02 01:00:00,Order Status - Animi qui odit.
+42,468,6,Order Status,Medium,Open,2024-01-05,2024-01-11 01:00:00,Order Status - Facilis ad ea.
+43,321,16,Login Issue,Critical,In Progress,2025-09-23,2025-09-24 21:00:00,Login Issue - Porro quisquam itaque.
+44,43,30,Order Status,High,Open,2025-01-05,2025-01-11 18:00:00,Order Status - Necessitatibus possimus facilis similique.
+45,105,1,Return Request,Critical,Closed,2025-12-31,2025-12-31 23:00:00,Return Request - Officiis delectus hic amet quaerat.
+46,92,7,Payment Failure,Low,In Progress,2025-07-08,2025-07-14 10:00:00,Payment Failure - Aliquam sint iure totam.
+47,245,22,Order Status,Critical,Closed,2024-07-06,2024-07-07 06:00:00,Order Status - Vel optio ducimus earum.
+48,480,16,Return Request,Critical,Resolved,2024-01-26,2024-01-27 05:00:00,Return Request - Nihil consequatur eum quia vitae.
+49,161,5,Order Status,Medium,Closed,2024-06-10,2024-06-15 06:00:00,Order Status - Possimus unde dolore.
+50,370,22,Login Issue,Low,Resolved,2024-05-09,,Login Issue - Commodi accusamus.
+51,208,27,Order Status,Low,Closed,2025-06-16,2025-06-22 11:00:00,Order Status - Blanditiis molestias harum occaecati minus.
+52,8,15,Login Issue,Critical,In Progress,2025-02-13,2025-02-13 15:00:00,Login Issue - Suscipit sapiente quis.
+53,67,7,Payment Failure,Critical,In Progress,2025-10-01,,Payment Failure - Voluptatem culpa cumque recusandae.
+54,150,20,Payment Failure,High,Closed,2025-08-10,2025-08-12 18:00:00,Payment Failure - Corrupti laudantium libero et.
+55,175,17,Account Update,Low,Closed,2024-03-13,2024-03-15 12:00:00,Account Update - Fugit doloremque repellat aut.
+56,454,22,Payment Failure,Medium,Closed,2024-08-20,2024-08-22 05:00:00,Payment Failure - Saepe est in ipsum.
+57,103,21,Return Request,Low,Closed,2024-04-15,2024-04-20 13:00:00,Return Request - Ipsum odit quidem.
+58,230,14,Payment Failure,Low,Resolved,2024-01-09,2024-01-14 22:00:00,Payment Failure - Accusamus deserunt reiciendis aperiam.
+59,305,12,Return Request,Low,Open,2025-09-22,,Return Request - Facilis architecto veritatis perspiciatis.
+60,158,24,Login Issue,Critical,Resolved,2024-02-19,2024-02-23 05:00:00,Login Issue - Ipsam perspiciatis.
+61,113,28,Return Request,Medium,Open,2025-06-05,,Return Request - Incidunt repellat.
+62,397,7,Payment Failure,Critical,Resolved,2025-09-16,2025-09-18 23:00:00,Payment Failure - Incidunt expedita ipsam aperiam.
+63,126,23,Product Defect,High,In Progress,2025-03-17,2025-03-23 23:00:00,Product Defect - Debitis esse distinctio.
+64,315,13,Product Defect,Critical,In Progress,2025-08-12,2025-08-17 00:00:00,Product Defect - Eveniet ipsam eaque quae voluptas.
+65,406,3,Product Defect,Medium,Resolved,2024-02-05,2024-02-07 19:00:00,Product Defect - Distinctio perspiciatis eum vel.
+66,66,8,Order Status,Low,In Progress,2024-07-20,,Order Status - Nesciunt eum itaque nemo.
+67,317,11,Order Status,Medium,Open,2024-04-27,,Order Status - Quis ut.
+68,405,27,Account Update,Low,Resolved,2025-12-02,2025-12-06 13:00:00,Account Update - Minus ipsa quia error quaerat.
+69,466,19,Login Issue,Medium,Open,2024-06-17,,Login Issue - Dolor ex suscipit mollitia deserunt.
+70,115,11,Order Status,High,Open,2025-05-26,2025-05-26 11:00:00,Order Status - Quae libero occaecati nam.
+71,10,12,Return Request,Medium,Open,2024-08-17,2024-08-18 17:00:00,Return Request - Molestias ab placeat aliquid.
+72,490,5,Login Issue,Low,Resolved,2025-07-13,2025-07-18 12:00:00,Login Issue - Voluptas voluptatibus possimus.
+73,407,10,Account Update,Medium,In Progress,2024-05-29,,Account Update - Reiciendis at eaque sequi.
+74,264,27,Login Issue,Medium,Closed,2024-07-26,,Login Issue - Natus cum.
+75,54,28,Order Status,Medium,In Progress,2024-03-01,,Order Status - Facere laborum dolor sed corporis.
+76,313,27,Account Update,Critical,In Progress,2024-04-26,2024-04-26 11:00:00,Account Update - Praesentium distinctio placeat distinctio voluptatum.
+77,415,14,Return Request,Medium,In Progress,2024-08-26,,Return Request - Enim aliquam sit ullam.
+78,233,6,Order Status,Medium,Closed,2024-02-17,2024-02-17 20:00:00,Order Status - Dolores cum hic rem.
+79,432,29,Return Request,High,In Progress,2025-03-23,2025-03-24 05:00:00,Return Request - Fugiat similique officiis ea.
+80,216,28,Account Update,Critical,Closed,2025-04-12,2025-04-14 06:00:00,Account Update - Labore dolores ut cum.
+81,70,7,Payment Failure,Medium,Resolved,2024-10-19,2024-10-21 02:00:00,Payment Failure - Sint officiis aliquid dolores delectus.
+82,349,12,Return Request,High,In Progress,2025-02-28,2025-03-06 17:00:00,Return Request - Atque porro a incidunt deleniti.
+83,42,12,Return Request,Critical,Open,2025-05-31,2025-06-01 10:00:00,Return Request - Maiores eos distinctio.
+84,333,22,Return Request,High,In Progress,2025-09-03,2025-09-09 22:00:00,Return Request - Libero architecto nihil.
+85,371,8,Payment Failure,High,In Progress,2024-07-23,2024-07-25 06:00:00,Payment Failure - Suscipit ab perferendis.
+86,300,5,Return Request,Low,In Progress,2024-06-28,,Return Request - Reprehenderit similique eveniet eaque.
+87,457,13,Product Defect,Low,Closed,2025-06-12,2025-06-13 11:00:00,Product Defect - Consectetur harum totam ipsam.
+88,300,17,Login Issue,Medium,Open,2024-03-30,,Login Issue - Necessitatibus non architecto mollitia.
+89,49,16,Login Issue,Critical,In Progress,2025-05-14,2025-05-18 08:00:00,Login Issue - Commodi a rerum.
+90,169,21,Account Update,High,In Progress,2024-04-17,2024-04-17 14:00:00,Account Update - Voluptates distinctio culpa.
+91,44,24,Login Issue,Medium,Open,2024-07-08,2024-07-09 11:00:00,Login Issue - Voluptatibus quam corrupti consectetur.
+92,477,11,Payment Failure,High,Open,2024-06-28,2024-06-29 14:00:00,Payment Failure - Iusto dolor vel impedit.
+93,436,1,Login Issue,Medium,In Progress,2024-01-20,,Login Issue - Praesentium alias id ut.
+94,153,22,Order Status,Low,Open,2024-12-24,2024-12-30 09:00:00,Order Status - Adipisci rem a nam.
+95,109,6,Order Status,High,Resolved,2025-08-31,2025-09-05 12:00:00,Order Status - Dolores reiciendis.
+96,134,29,Return Request,High,In Progress,2026-01-03,2026-01-09 02:00:00,Return Request - Nostrum cumque magnam esse.
+97,203,29,Account Update,Critical,Open,2025-10-17,2025-10-17 22:00:00,Account Update - Enim quas alias labore provident.
+98,262,21,Payment Failure,Critical,Resolved,2024-01-07,2024-01-12 16:00:00,Payment Failure - Consequatur libero.
+99,314,28,Return Request,Critical,In Progress,2024-11-17,2024-11-19 13:00:00,Return Request - Perferendis sit.
+100,351,17,Product Defect,Critical,Closed,2024-09-24,2024-09-30 17:00:00,Product Defect - Quos facilis cumque iste.

@@ -3,12 +3,7 @@ import numpy as np
 from datetime import datetime, timedelta
 from faker import Faker
 import random
-from ..config import REGIONS, DEPARTMENTS
-from ..utils import write_csv
-
-fake = Faker('en_IN')
-
-from ..config import REGIONS, DEPARTMENTS
+from ..config import REGIONS, DEPARTMENTS, EXPENSE_CATS
 from ..utils import write_csv
 from ..taxonomy import TAXONOMY as CATEGORIES
 
@@ -80,8 +75,6 @@ def generate_core(config, output_dir):
     dim_brand = pd.DataFrame(brands_data)
     write_csv(dim_brand, output_dir / "core" / "dim_brand.csv")
     
-    write_csv(dim_brand, output_dir / "core" / "dim_brand.csv")
-    
     # 5. Dim Department
     print("  ... dim_department")
     dim_dept = pd.DataFrame([
@@ -92,7 +85,6 @@ def generate_core(config, output_dir):
 
     # 6. Dim Expense Category (Finance)
     print("  ... dim_expense_category")
-    EXPENSE_CATS = ['Rent', 'Utilities', 'Maintenance', 'Marketing', 'Software', 'Travel', 'Office Supplies']
     dim_exp_cat = pd.DataFrame([
         {"exp_cat_id": i+1, "category_name": c}
         for i, c in enumerate(EXPENSE_CATS)

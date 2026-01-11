@@ -1,0 +1,9 @@
+promo_id,promo_name,discount_percent,start_date,end_date,active
+1,Phased Sale,10,2025-05-30,2025-06-13,True
+2,Versatile Sale,15,2024-03-06,2024-03-16,False
+3,Self-enabling Sale,5,2025-08-07,2025-08-11,False
+4,Vision-oriented Sale,10,2025-02-21,2025-02-25,True
+5,Front-line Sale,15,2024-12-29,2025-01-10,False
+6,Reverse-engineered Sale,15,2025-10-03,2025-10-11,False
+7,Networked Sale,15,2024-07-24,2024-07-29,True
+8,Compatible Sale,50,2024-02-07,2024-02-14,True

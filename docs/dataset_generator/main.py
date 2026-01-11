@@ -12,6 +12,7 @@ from .schemas.sales import generate_sales
 from .schemas.finance import generate_finance
 from .schemas.hr import generate_hr
 from .schemas.marketing import generate_marketing
+from .schemas.support import generate_support
 from .utils import ensure_dirs
 
 @click.command()
@@ -63,8 +64,13 @@ def main(output_dir, scale, seed):
     
     # 6. Aux
     generate_finance(config, out_path, dim_date, dim_exp_cat)
-    generate_hr(config, out_path, df_employees, dim_date) # Correctly passing employees
+    generate_hr(config, out_path, df_employees, dim_date) 
     generate_marketing(config, out_path, dim_date, df_products)
+    generate_support(config, out_path, df_customers, df_employees, dim_date)
+    
+    # 7. SQL Scripts
+    from .sql_generator import generate_sql_scripts
+    generate_sql_scripts(out_path)
     
     print(f"\n✨ Generation Complete! Data saved to {out_path}")
 

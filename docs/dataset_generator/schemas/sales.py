@@ -37,7 +37,12 @@ def generate_sales(config, output_dir, df_customers, df_stores, df_products, dim
     # We'll pick from dim_date to ensure FK validity if we had one, but we assume date range matches
     dates = np.random.choice(dim_date['date_key'], size=n_orders)
     
-    status = np.random.choice(ORDER_STATUS, size=n_orders, p=[0.7, 0.1, 0.1, 0.1]) # Delivered, Shipped, Cancelled, Returned
+    # Status weights corresponding to:
+    # ["Delivered", "Shipped", "Cancelled", "Returned", "Processing", "Out for Delivery", "Failed"]
+    # We'll trust the order in config or just rely on random choice without specific p if we want to be safe, 
+    # but for realism let's hardcode weights matching the 7 items.
+    p_weights = [0.55, 0.10, 0.05, 0.05, 0.10, 0.10, 0.05]
+    status = np.random.choice(ORDER_STATUS, size=n_orders, p=p_weights)
     
     df_orders = pd.DataFrame({
         "order_id": order_ids,

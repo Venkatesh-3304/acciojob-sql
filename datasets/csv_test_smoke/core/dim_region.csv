@@ -1,21 +1,21 @@
 region_id,region_name,country,state
-1,North,India,Rajasthan
-2,North,India,Bihar
-3,South,India,Andhra Pradesh
-4,East,India,Telangana
-5,North,India,Himachal Pradesh
-6,South,India,Haryana
+1,East,India,Rajasthan
+2,South,India,Bihar
+3,Central,India,Andhra Pradesh
+4,Central,India,Telangana
+5,East,India,Himachal Pradesh
+6,East,India,Haryana
 7,Central,India,Chhattisgarh
-8,Central,India,Sikkim
-9,South,India,Nagaland
+8,South,India,Sikkim
+9,North East,India,Nagaland
 10,South,India,Assam
 11,East,India,Odisha
-12,North,India,Maharashtra
-13,West,India,Arunachal Pradesh
-14,South,India,Gujarat
-15,Central,India,Mizoram
-16,North,India,Punjab
-17,East,India,Tamil Nadu
-18,East,India,Manipur
-19,West,India,Uttar Pradesh
-20,West,India,West Bengal
+12,East,India,Maharashtra
+13,North,India,Arunachal Pradesh
+14,West,India,Gujarat
+15,West,India,Mizoram
+16,West,India,Punjab
+17,Central,India,Tamil Nadu
+18,North East,India,Manipur
+19,South,India,Uttar Pradesh
+20,South,India,West Bengal

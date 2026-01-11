@@ -1,31 +1,31 @@
 employee_id,store_id,first_name,last_name,email,role,dept_id,joining_date,salary
-1,2,Joshua,Nagy,joshua.nagy@retailmart.com,Store Manager,6,2025-02-25,33994
-2,2,Veer,Khalsa,veer.khalsa@retailmart.com,Marketing Associate,2,2025-04-13,37863
-3,2,Zaid,Suresh,zaid.suresh@retailmart.com,Marketing Associate,2,2024-04-12,64495
-4,1,Anirudh,Munshi,anirudh.munshi@retailmart.com,Marketing Associate,1,2024-01-27,59414
-5,2,Girish,Rajagopalan,girish.rajagopalan@retailmart.com,Data Analyst,6,2025-01-11,41267
-6,2,Ekanta,Bumb,ekanta.bumb@retailmart.com,Cashier,1,2024-02-23,76265
-7,2,Turvi,Lata,turvi.lata@retailmart.com,Customer Service Rep,5,2022-04-18,134576
-8,1,Lopa,Hans,lopa.hans@retailmart.com,HR Executive,6,2025-03-12,129431
-9,1,Anya,Dhar,anya.dhar@retailmart.com,Customer Service Rep,5,2023-06-26,52239
-10,2,Daniel,Som,daniel.som@retailmart.com,Cashier,2,2023-01-06,24213
-11,1,Aarush,Narang,aarush.narang@retailmart.com,Data Analyst,1,2023-06-15,122282
-12,2,Vasudha,Dhingra,vasudha.dhingra@retailmart.com,Finance Executive,6,2025-02-28,65312
-13,2,Ekaja,Sundaram,ekaja.sundaram@retailmart.com,Finance Executive,6,2025-12-20,44452
-14,2,Ryan,Guha,ryan.guha@retailmart.com,Cashier,4,2025-11-10,65470
-15,1,Jai,Merchant,jai.merchant@retailmart.com,Finance Executive,6,2024-12-17,59017
-16,1,Robert,Viswanathan,robert.viswanathan@retailmart.com,Finance Executive,4,2025-03-23,80612
-17,1,Barkha,Kothari,barkha.kothari@retailmart.com,Marketing Associate,2,2025-03-11,103426
-18,2,Pallavi,Apte,pallavi.apte@retailmart.com,Inventory Clerk,4,2023-03-22,46077
-19,2,Samarth,Dhawan,samarth.dhawan@retailmart.com,Inventory Clerk,2,2023-03-19,95931
-20,1,Ayush,Sama,ayush.sama@retailmart.com,Data Analyst,6,2022-05-05,35344
-21,2,Udyati,Divan,udyati.divan@retailmart.com,Cashier,5,2023-10-25,125583
-22,2,Lavanya,Dugar,lavanya.dugar@retailmart.com,Cashier,4,2024-05-27,146922
-23,2,Dipta,Chokshi,dipta.chokshi@retailmart.com,Sales Executive,6,2025-10-10,44066
-24,1,Tamanna,Majumdar,tamanna.majumdar@retailmart.com,Inventory Clerk,5,2022-10-26,100185
-25,2,Sudiksha,Mane,sudiksha.mane@retailmart.com,Sales Executive,4,2022-09-05,77403
-26,2,Kabir,Naidu,kabir.naidu@retailmart.com,Inventory Clerk,3,2025-11-07,47823
-27,1,Jatin,Ben,jatin.ben@retailmart.com,Store Manager,1,2025-07-01,129101
-28,2,Vansha,Pillay,vansha.pillay@retailmart.com,Cashier,2,2022-08-06,127886
-29,2,Keya,Bal,keya.bal@retailmart.com,Data Analyst,3,2024-07-17,113864
-30,1,Ekiya,Randhawa,ekiya.randhawa@retailmart.com,Finance Executive,6,2022-09-28,48948
+1,1,Rachit,Bal,rachit.bal@retailmart.com,Assistant Manager,5,2025-10-06,116944
+2,2,Siya,Maharaj,siya.maharaj@retailmart.com,Store Manager,9,2023-07-20,43984
+3,1,Faras,Bhatt,faras.bhatt@retailmart.com,Regional Manager,3,2024-11-27,124214
+4,2,Triya,Talwar,triya.talwar@retailmart.com,Customer Service Rep,9,2024-06-20,73674
+5,2,Waida,Rajagopalan,waida.rajagopalan@retailmart.com,Data Analyst,10,2024-03-12,104098
+6,1,Rajata,Tiwari,rajata.tiwari@retailmart.com,Data Engineer,2,2024-01-07,79607
+7,2,Mitesh,Dayal,mitesh.dayal@retailmart.com,Regional Manager,10,2023-04-23,23189
+8,2,Rohan,Tak,rohan.tak@retailmart.com,Inventory Clerk,7,2026-01-02,55063
+9,2,Balvan,Wali,balvan.wali@retailmart.com,Marketing Associate,4,2023-04-20,122403
+10,2,Aadi,Rastogi,aadi.rastogi@retailmart.com,Logistics Coordinator,3,2024-08-08,132150
+11,1,Wazir,Pillay,wazir.pillay@retailmart.com,Logistics Coordinator,5,2022-03-27,67356
+12,1,Amruta,Balan,amruta.balan@retailmart.com,Customer Service Rep,9,2024-09-06,77327
+13,1,Jalsa,Ramakrishnan,jalsa.ramakrishnan@retailmart.com,Cashier,10,2023-07-21,136614
+14,2,Garima,Shan,garima.shan@retailmart.com,Visual Merchandiser,1,2024-04-21,53211
+15,1,Azaan,Dash,azaan.dash@retailmart.com,Maintenance Staff,7,2022-09-13,112471
+16,1,Patrick,Oommen,patrick.oommen@retailmart.com,Data Engineer,6,2025-06-09,112008
+17,1,Amrita,Krishnamurthy,amrita.krishnamurthy@retailmart.com,Logistics Coordinator,4,2022-10-04,49618
+18,2,Maya,Sharma,maya.sharma@retailmart.com,Inventory Clerk,5,2024-05-27,102650
+19,2,Rohan,Dey,rohan.dey@retailmart.com,Visual Merchandiser,1,2023-06-10,111888
+20,2,Chaitaly,Grewal,chaitaly.grewal@retailmart.com,Regional Manager,5,2024-07-31,89258
+21,2,Kiaan,Walia,kiaan.walia@retailmart.com,Store Manager,2,2024-12-26,50026
+22,1,Amruta,Raman,amruta.raman@retailmart.com,Logistics Coordinator,2,2025-05-08,71308
+23,1,Tristan,Hayer,tristan.hayer@retailmart.com,Regional Manager,1,2024-03-18,54187
+24,1,Harshil,Oak,harshil.oak@retailmart.com,HR Executive,8,2023-08-25,84592
+25,2,Abha,Buch,abha.buch@retailmart.com,Sales Executive,10,2024-10-07,43687
+26,2,Falak,Grover,falak.grover@retailmart.com,Visual Merchandiser,10,2024-02-28,60386
+27,2,Geetika,Subramanian,geetika.subramanian@retailmart.com,Security Supervisor,1,2022-09-27,73799
+28,2,Hemal,Ramachandran,hemal.ramachandran@retailmart.com,Data Engineer,4,2022-09-12,36564
+29,1,Onveer,Raval,onveer.raval@retailmart.com,Assistant Manager,5,2025-10-24,134684
+30,2,Timothy,Kapadia,timothy.kapadia@retailmart.com,Store Manager,7,2023-05-27,72256

@@ -21,10 +21,14 @@ DEFAULT_CONFIG = {
 }
 
 # Constants
-REGIONS = ["North", "South", "East", "West", "Central"]
-PAY_MODES = ["UPI", "Credit Card", "Debit Card", "Cash", "Net Banking"]
-ORDER_STATUS = ["Delivered", "Shipped", "Cancelled", "Returned"]
-EMP_ROLES = ["Store Manager", "Assistant Manager", "Cashier", "Inventory Clerk",
-             "Sales Executive", "Customer Service Rep", "Marketing Associate",
-             "Finance Executive", "HR Executive", "Data Analyst"]
-DEPARTMENTS = ["Sales", "Operations", "Marketing", "Finance", "HR", "IT"]
+# Constants
+REGIONS = ["North", "South", "East", "West", "Central", "North East"]
+PAY_MODES = ["UPI", "Credit Card", "Debit Card", "Cash", "Net Banking", "Wallet", "EMI", "Gift Card", "Buy Now Pay Later"]
+ORDER_STATUS = ["Delivered", "Shipped", "Cancelled", "Returned", "Processing", "Out for Delivery", "Failed"]
+EMP_ROLES = ["Store Manager", "Assistant Manager", "Cashier", "Inventory Clerk", "Store Associate",
+             "Sales Executive", "Customer Service Rep", "Marketing Associate", "Visual Merchandiser",
+             "Finance Executive", "HR Executive", "Data Analyst", "Data Engineer",
+             "Regional Manager", "Logistics Coordinator", "Security Supervisor", "Maintenance Staff"]
+DEPARTMENTS = ["Sales", "Operations", "Marketing", "Finance", "HR", "IT", "Logistics", "Customer Support", "Legal", "Procurement"]
+EXPENSE_CATS = ["Rent", "Utilities", "Maintenance", "Marketing", "Software", "Travel", "Office Supplies",
+                "Payroll", "Insurance", "Taxes", "Logistics", "R&D", "Training", "Events", "Miscellaneous"]
