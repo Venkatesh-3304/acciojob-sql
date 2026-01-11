@@ -254,7 +254,7 @@ const children = [
     new Paragraph({
         alignment: AlignmentType.CENTER,
         spacing: { after: 400 },
-        children: [new TextRun({ text: "AccioJob SQL Bootcamp", size: 24, color: "6b7280" })]
+        children: [new TextRun({ text: "SQL Bootcamp", size: 24, color: "6b7280" })]
     }),
     new Paragraph({ spacing: { after: 1200 } }),
     new Paragraph({
@@ -759,7 +759,7 @@ const doc = new Document({
                 children: [new Paragraph({
                     alignment: AlignmentType.RIGHT,
                     children: [new TextRun({ 
-                        text: "RetailMart Analytics | AccioJob SQL Bootcamp", 
+                        text: "RetailMart Analytics | SQL Bootcamp", 
                         size: 18, 
                         color: "9ca3af" 
                     })]
