@@ -1,0 +1,21 @@
+region_id,region_name,country,state
+1,North,India,Rajasthan
+2,South,India,Bihar
+3,East,India,Andhra Pradesh
+4,Central,India,Telangana
+5,West,India,Himachal Pradesh
+6,East,India,Haryana
+7,Central,India,Chhattisgarh
+8,North,India,Sikkim
+9,South,India,Nagaland
+10,West,India,Assam
+11,West,India,Odisha
+12,West,India,Maharashtra
+13,East,India,Arunachal Pradesh
+14,Central,India,Gujarat
+15,Central,India,Mizoram
+16,West,India,Punjab
+17,Central,India,Tamil Nadu
+18,South,India,Manipur
+19,North,India,Uttar Pradesh
+20,North,India,West Bengal
