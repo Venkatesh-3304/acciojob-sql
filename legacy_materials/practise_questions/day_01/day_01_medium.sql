@@ -1,9 +1,9 @@
 /* ============================================================
-   ACCIOJOB SQL PRACTICE SET — DAY 1 (MEDIUM LEVEL)
+   SQL PRACTICE SET — DAY 1 (MEDIUM LEVEL)
    Instructor: Sayyed Siraj Ali
    Topic: PostgreSQL Setup & Basics
    Database Context:
-     - DDL/DML → acciojob.daily
+     - DDL/DML → daily
      - SELECT Queries → retailmart
    ============================================================ */
 
@@ -34,8 +34,8 @@
 /* ============================================================
    💻 SECTION B: BASIC COMMANDS (40)
    ------------------------------------------------------------ */
-/* Q21. Create a new database named acciojob. */
-/* Q22. Connect to the acciojob database. */
+/* Q21. Create a new database named sql_bootcamp. */
+/* Q22. Connect to the sql_bootcamp database. */
 /* Q23. List all existing databases. */
 /* Q24. Create a schema named daily. */
 /* Q25. Show all schemas in the current database. */
@@ -78,7 +78,7 @@
 /* ============================================================
    🧩 SECTION C: PRACTICAL DDL & DML TASKS (40)
    ------------------------------------------------------------ */
-/* Q61. Create schema daily if not exists in acciojob database. */
+/* Q61. Create schema daily if not exists in sql_bootcamp database. */
 /* Q62. Create table daily_products(product_id SERIAL, name TEXT, category TEXT, price NUMERIC(10,2)). */
 /* Q63. Insert 5 sample records into daily_products. */
 /* Q64. Select all from daily_products. */
@@ -109,7 +109,7 @@
 /* Q89. Retrieve all columns from retailmart.products ordered by product_id. */
 /* Q90. Retrieve all product names sorted alphabetically (no filter). */
 /* Q91. Show first 5 rows from retailmart.products using LIMIT. */
-/* Q92. Retrieve total number of schemas available in acciojob. */
+/* Q92. Retrieve total number of schemas available in sql_bootcamp. */
 /* Q93. Show all tables in retailmart.products schema. */
 /* Q94. Create table daily_feedback(id SERIAL, feedback TEXT, created_at TIMESTAMP DEFAULT NOW()). */
 /* Q95. Insert 2 feedback entries. */
@@ -117,13 +117,13 @@
 /* Q97. Truncate daily_feedback table. */
 /* Q98. Drop daily_feedback table. */
 /* Q99. Show current user name. */
-/* Q100. List all tables created in acciojob.daily schema. */
+/* Q100. List all tables created in daily schema. */
 
 /* ============================================================
    ✅ END OF DAY 1 — MEDIUM LEVEL PRACTICE FILE (100 QUESTIONS)
    ------------------------------------------------------------
    Instructions:
    - Do not modify existing retailmart tables.
-   - Use acciojob.daily schema for all DDL/DML tasks.
+   - Use daily schema for all DDL/DML tasks.
    - Stay within Day 1 topics only (no constraints, filters, or joins).
 ============================================================ */

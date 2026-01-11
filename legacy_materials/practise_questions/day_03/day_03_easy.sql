@@ -1,12 +1,12 @@
 /* ============================================================
-   ACCIOJOB SQL PRACTICE SET — DAY 3 (EASY LEVEL)
+   SQL PRACTICE SET — DAY 3 (EASY LEVEL)
    Instructor: Sayyed Siraj Ali
    Topic: Data Onboarding + Constraints & Keys (+ UPSERT)
    Day Scope Rules:
      - Focus: Import mindset, CREATE TABLE for clean load, NOT NULL, UNIQUE, CHECK, DEFAULT,
               PRIMARY KEY, FOREIGN KEY, and basic UPSERT (INSERT ... ON CONFLICT ... DO ...).
      - Usage:
-         • DDL/DML → acciojob.daily (create NEW tables; do NOT alter retailmart)
+         • DDL/DML → daily (create NEW tables; do NOT alter retailmart)
          • SELECT (read-only) → retailmart only
    Question Plan: 20 Conceptual + 40 Constraints/Keys Tasks + 40 Practical Load/UPSERT Tasks = 100 total
    ============================================================ */
@@ -37,7 +37,7 @@
 
 /* ============================================================
    🔒 SECTION B: CONSTRAINTS & KEYS TASKS (40)
-   (All tasks in acciojob.daily; create NEW tables only.)
+   (All tasks in daily; create NEW tables only.)
    ------------------------------------------------------------ */
 /* Q21. Create table d3_products(
          product_id SERIAL PRIMARY KEY,
@@ -182,6 +182,6 @@
    ✅ END OF DAY 3 — EASY LEVEL PRACTICE FILE (100 QUESTIONS)
    ------------------------------------------------------------
    Instructions:
-   - Keep all writes in acciojob.daily; use retailmart only for read-only lookups.
+   - Keep all writes in daily; use retailmart only for read-only lookups.
    - Use clear comments for any expected constraint failure observations.
 ============================================================ */

@@ -1,9 +1,9 @@
 /* ============================================================
-   ACCIOJOB SQL PRACTICE SET — DAY 1 (HARD LEVEL)
+   SQL PRACTICE SET — DAY 1 (HARD LEVEL)
    Instructor: Sayyed Siraj Ali
    Topic: PostgreSQL Setup & Basics
    Database Context:
-     - DDL/DML → acciojob.daily
+     - DDL/DML → daily
      - SELECT Queries → retailmart
    ============================================================ */
 
@@ -34,8 +34,8 @@
 /* ============================================================
    💻 SECTION B: BASIC COMMANDS (40)
    ------------------------------------------------------------ */
-/* Q21. Create database acciojob if it does not exist. */
-/* Q22. Connect to acciojob. */
+/* Q21. Create database sql_bootcamp if it does not exist. */
+/* Q22. Connect to sql_bootcamp. */
 /* Q23. Verify the connection using SELECT current_database(). */
 /* Q24. Create schema daily if not exists. */
 /* Q25. Create table daily_departments(dept_id SERIAL PRIMARY KEY, dept_name TEXT NOT NULL). */
@@ -78,7 +78,7 @@
 /* ============================================================
    🧩 SECTION C: PRACTICAL DDL & DML TASKS (40)
    ------------------------------------------------------------ */
-/* Q61. Create schema daily if not exists in acciojob. */
+/* Q61. Create schema daily if not exists in sql_bootcamp. */
 /* Q62. Create table daily_products(product_id SERIAL, name TEXT, category TEXT, price NUMERIC(10,2)). */
 /* Q63. Insert 10 sample rows into daily_products. */
 /* Q64. Add a new column brand TEXT to daily_products. */
@@ -107,14 +107,14 @@
 /* Q87. Retrieve all products ordered by name alphabetically. */
 /* Q88. Retrieve top 5 products by price (using ORDER BY + LIMIT). */
 /* Q89. Show name of current database using SELECT current_database(). */
-/* Q90. Retrieve all schemas in acciojob using information_schema.schemata. */
-/* Q91. Retrieve all table names from acciojob.daily schema using information_schema.tables. */
+/* Q90. Retrieve all schemas in sql_bootcamp using information_schema.schemata. */
+/* Q91. Retrieve all table names from daily schema using information_schema.tables. */
 /* Q92. Create table daily_feedback(id SERIAL, feedback TEXT, added_on TIMESTAMP DEFAULT NOW()). */
 /* Q93. Insert 3 feedback records. */
 /* Q94. Select all feedback records ordered by id DESC. */
 /* Q95. Truncate daily_feedback table. */
 /* Q96. Drop daily_feedback table. */
-/* Q97. Show database size in MB for acciojob. */
+/* Q97. Show database size in MB for sql_bootcamp. */
 /* Q98. Show current PostgreSQL user. */
 /* Q99. List all databases with their owners. */
 /* Q100. List all tables available under retailmart.products schema. */

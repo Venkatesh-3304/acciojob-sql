@@ -1,12 +1,12 @@
 /* ============================================================
-   ACCIOJOB SQL PRACTICE SET — DAY 2 (MEDIUM LEVEL)
+   SQL PRACTICE SET — DAY 2 (MEDIUM LEVEL)
    Instructor: Sayyed Siraj Ali
    Topic: Data Types & Table Design
    Day Scope Rules:
      - Focus: PostgreSQL Data Types, Type Casting, Table Design, and ALTER operations.
      - Avoid: Constraints/Keys/Defaults (covered on Day 3).
      - Usage:
-         • DDL/DML → acciojob.daily
+         • DDL/DML → daily
          • SELECT → retailmart only (read-only)
    Question Plan: 25 Conceptual + 35 Commands + 100 Practical = 160 total
    ============================================================ */
@@ -164,7 +164,7 @@
 /* Q140. Insert 5 records. */
 /* Q141. Alter md_misc change column c to NUMERIC(12,3). */
 /* Q142. Drop md_misc. */
-/* Q143. Retrieve all table names under acciojob.daily using information_schema. */
+/* Q143. Retrieve all table names under daily using information_schema. */
 /* Q144. Retrieve PostgreSQL version using SQL. */
 /* Q145. Retrieve available data types using pg_type catalog. */
 /* Q146. Retrieve 10 rows from retailmart.products. */
@@ -177,7 +177,7 @@
 /* Q153. Retrieve current user. */
 /* Q154. Retrieve schema names available. */
 /* Q155. Retrieve column data types from information_schema.columns. */
-/* Q156. Retrieve distinct table names from acciojob.daily. */
+/* Q156. Retrieve distinct table names from daily. */
 /* Q157. Retrieve count of tables created today using pg_class. */
 /* Q158. Retrieve PostgreSQL encoding information using SHOW server_encoding. */
 /* Q159. Retrieve LC_COLLATE and LC_CTYPE settings. */
@@ -188,6 +188,6 @@
    ------------------------------------------------------------
    Instructions:
    - Still no constraints or keys — focus on data types, conversion, redesign.
-   - Use acciojob.daily schema for all DDL/DML.
+   - Use daily schema for all DDL/DML.
    - Use retailmart for read-only SELECT tasks.
 ============================================================ */

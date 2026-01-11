@@ -1,5 +1,5 @@
 /* ============================================================
-   ACCIOJOB SQL PRACTICE SET — DAY 2 (HARD LEVEL)
+   SQL PRACTICE SET — DAY 2 (HARD LEVEL)
    Instructor: Sayyed Siraj Ali
    Topic: Data Types & Table Design (Advanced)
    Day Scope Rules:
@@ -7,7 +7,7 @@
      - Avoid: Constraints, Keys, and Defaults (covered Day 3).
      - Themes: E-commerce, Logistics, HR, and Library Systems.
      - Usage:
-         • DDL/DML → acciojob.daily
+         • DDL/DML → daily
          • SELECT → retailmart only (read-only)
    Question Plan: 25 Conceptual + 35 Commands + 100 Practical = 160 total
    ============================================================ */
@@ -143,7 +143,7 @@
 /* Q118. Drop hd_binary_demo. */
 /* Q119. Retrieve first 10 rows from retailmart.products. */
 /* Q120. Retrieve column data types from retailmart.products using information_schema. */
-/* Q121. Retrieve all tables in acciojob.daily schema using pg_class. */
+/* Q121. Retrieve all tables in daily schema using pg_class. */
 /* Q122. Retrieve all text-based columns in retailmart using information_schema.columns. */
 /* Q123. Retrieve all tables created today using pg_stat_all_tables. */
 /* Q124. Retrieve current database using current_database(). */
@@ -151,24 +151,24 @@
 /* Q126. Retrieve 10 rows from retailmart.customers. */
 /* Q127. Retrieve 10 rows from retailmart.sales.orders. */
 /* Q128. Retrieve column names and types from retailmart.sales.orders. */
-/* Q129. Retrieve all numeric data types used in acciojob.daily tables. */
-/* Q130. Retrieve all TIMESTAMP columns from acciojob.daily. */
-/* Q131. Retrieve all JSON/JSONB columns from acciojob.daily. */
+/* Q129. Retrieve all numeric data types used in daily tables. */
+/* Q130. Retrieve all TIMESTAMP columns from daily. */
+/* Q131. Retrieve all JSON/JSONB columns from daily. */
 /* Q132. Retrieve first 10 rows from retailmart.products ordered by product_id. */
-/* Q133. Retrieve total count of tables in acciojob.daily. */
+/* Q133. Retrieve total count of tables in daily. */
 /* Q134. Retrieve list of UUID columns from pg_type. */
-/* Q135. Retrieve size of acciojob database in MB using pg_database_size(). */
+/* Q135. Retrieve size of sql_bootcamp database in MB using pg_database_size(). */
 /* Q136. Retrieve LC_COLLATE and LC_CTYPE configuration. */
 /* Q137. Retrieve current PostgreSQL version. */
 /* Q138. Retrieve all tables containing BYTEA columns. */
-/* Q139. Retrieve all ARRAY columns in acciojob.daily. */
+/* Q139. Retrieve all ARRAY columns in daily. */
 /* Q140. Retrieve all tables containing NUMERIC columns. */
 /* Q141. Retrieve all column names containing the word 'date'. */
 /* Q142. Retrieve table count grouped by data type (conceptual only). */
-/* Q143. Retrieve names of all custom schemas in acciojob. */
+/* Q143. Retrieve names of all custom schemas in sql_bootcamp. */
 /* Q144. Retrieve count of columns by data type using information_schema. */
 /* Q145. Retrieve schema size in MB for daily schema. */
-/* Q146. Retrieve all DATE columns in acciojob.daily. */
+/* Q146. Retrieve all DATE columns in daily. */
 /* Q147. Retrieve list of unique data types in retailmart.products. */
 /* Q148. Retrieve total number of NUMERIC columns in retailmart.products. */
 /* Q149. Retrieve LC_COLLATE using SHOW. */
@@ -189,5 +189,5 @@
    ------------------------------------------------------------
    Instructions:
    - Focus on mastering PostgreSQL data type operations, redesigns, and analysis.
-   - Use acciojob.daily schema for DDL/DML; retailmart for read-only exploration.
+   - Use daily schema for DDL/DML; retailmart for read-only exploration.
 ============================================================ */

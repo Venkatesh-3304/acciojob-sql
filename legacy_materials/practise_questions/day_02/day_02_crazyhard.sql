@@ -1,12 +1,12 @@
 /* ============================================================
-   ACCIOJOB SQL PRACTICE SET — DAY 2 (CRAZY HARD LEVEL)
+   SQL PRACTICE SET — DAY 2 (CRAZY HARD LEVEL)
    Instructor: Sayyed Siraj Ali
    Topic: Data Types & Table Design — Expert Track
    Day Scope Rules (Strict):
      - Focus ONLY on PostgreSQL data types, casting, table design, column evolution, and catalogs.
      - DO NOT use constraints/keys/defaults (NOT NULL, UNIQUE, CHECK, PK/FK, DEFAULT) — Day 3 topic.
      - Usage:
-         • DDL/DML → acciojob.daily
+         • DDL/DML → daily
          • SELECT (read-only) → retailmart or system catalogs (information_schema/pg_catalog)
    Question Plan: 25 Conceptual + 35 Advanced Commands + 100 Practical = 160 total
    ============================================================ */
@@ -42,7 +42,7 @@
 
 /* ============================================================
    💻 SECTION B: ADVANCED COMMANDS (35)
-   (All in acciojob.daily; no constraints/defaults.)
+   (All in daily; no constraints/defaults.)
    ------------------------------------------------------------ */
 /* Q26. Ensure schema daily exists; create if missing. */
 /* Q27. Create table ch_profiles(uid UUID, name TEXT, joined_at TIMESTAMPTZ, tags TEXT[], meta JSONB). */
@@ -71,8 +71,8 @@
 /* Q50. Show all user tables in daily via information_schema.tables. */
 /* Q51. Show PostgreSQL version via SELECT version(). */
 /* Q52. Show server_encoding, LC_COLLATE, LC_CTYPE via SHOW commands. */
-/* Q53. List distinct data types used in acciojob.daily via information_schema. */
-/* Q54. Estimate size of acciojob database via pg_database_size(). */
+/* Q53. List distinct data types used in daily via information_schema. */
+/* Q54. Estimate size of sql_bootcamp database via pg_database_size(). */
 /* Q55. List all columns that are of type JSON/JSONB in daily. */
 /* Q56. List all ARRAY-typed columns in daily. */
 /* Q57. List all BYTEA-typed columns in daily. */
@@ -183,12 +183,12 @@
 /* Q157. Use pg_type to list all built-in types referenced by daily tables. */
 /* Q158. Use pg_collation to show available collations. */
 /* Q159. Use pg_stat_all_tables to approximate relsize trends (conceptual). */
-/* Q160. Use pg_database_size() to show acciojob DB size in MB. */
+/* Q160. Use pg_database_size() to show sql_bootcamp DB size in MB. */
 
 /* ============================================================
    ✅ END OF DAY 2 — CRAZY HARD LEVEL PRACTICE FILE (160 QUESTIONS)
    ------------------------------------------------------------
    Instructions:
    - Expert-level type evolution, casting, and catalog usage — no constraints.
-   - Keep all DDL/DML inside acciojob.daily; read retailmart/system catalogs only.
+   - Keep all DDL/DML inside daily; read retailmart/system catalogs only.
 ============================================================ */

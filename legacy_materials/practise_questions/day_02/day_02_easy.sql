@@ -1,12 +1,12 @@
 /* ============================================================
-   ACCIOJOB SQL PRACTICE SET — DAY 2 (EASY LEVEL)
+   SQL PRACTICE SET — DAY 2 (EASY LEVEL)
    Instructor: Sayyed Siraj Ali
    Topic: Data Types & Table Design
    Day Scope Rules:
      - Focus: PostgreSQL data types + table design (CREATE/ALTER/DROP columns & tables).
      - Avoid: Constraints & keys (NOT NULL, UNIQUE, CHECK, PK/FK, DEFAULT) — these are Day 3.
      - Usage:
-         • DDL/DML → acciojob.daily
+         • DDL/DML → daily
          • SELECT (if any) → retailmart only (read-only)
    Question Plan: 25 Conceptual + 35 Commands + 100 Practical = 160 total
    ============================================================ */
@@ -42,9 +42,9 @@
 
 /* ============================================================
    💻 SECTION B: BASIC COMMANDS (35)
-   (All commands must run on acciojob.daily, avoid constraints/keys/defaults.)
+   (All commands must run on daily, avoid constraints/keys/defaults.)
    ------------------------------------------------------------ */
-/* Q26. Ensure you are connected to acciojob; switch if needed. */
+/* Q26. Ensure you are connected to sql_bootcamp; switch if needed. */
 /* Q27. Create schema daily if it does not exist. */
 /* Q28. Create table dt_basics(id SERIAL, name VARCHAR(50), notes TEXT). */
 /* Q29. Create table dt_numbers(a_small SMALLINT, a_int INTEGER, a_big BIGINT). */
@@ -75,7 +75,7 @@
 /* Q54. Create table dt_text_vs_varchar(c1 VARCHAR(5), c2 TEXT). */
 /* Q55. Insert sample data into dt_text_vs_varchar. */
 /* Q56. Drop table dt_text_vs_varchar. */
-/* Q57. List all tables created under acciojob.daily using information_schema.tables. */
+/* Q57. List all tables created under daily using information_schema.tables. */
 /* Q58. Drop table dt_casts. */
 /* Q59. Drop table dt_arrays. */
 /* Q60. Drop table dt_json. */
@@ -190,6 +190,6 @@
    ------------------------------------------------------------
    Instructions:
    - Do not add constraints/keys/defaults on Day 2.
-   - Use acciojob.daily for all DDL/DML; use retailmart only for any read-only SELECTs.
+   - Use daily for all DDL/DML; use retailmart only for any read-only SELECTs.
    - Write answers directly below each comment.
 ============================================================ */

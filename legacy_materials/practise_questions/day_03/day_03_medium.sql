@@ -1,11 +1,11 @@
 /* ============================================================
-   ACCIOJOB SQL PRACTICE SET — DAY 3 (MEDIUM LEVEL)
+   SQL PRACTICE SET — DAY 3 (MEDIUM LEVEL)
    Instructor: Sayyed Siraj Ali
    Topic: Data Onboarding + Constraints & Keys + UPSERT
    Scope: Multiple-table onboarding with constraints and conflict-handling.
    Rules:
      - Focus: NOT NULL, UNIQUE, CHECK, DEFAULT, PRIMARY/FOREIGN KEYS, ON DELETE/UPDATE actions, UPSERT logic.
-     - DDL/DML → acciojob.daily  |  SELECT (read-only) → retailmart
+     - DDL/DML → daily  |  SELECT (read-only) → retailmart
    Question Plan: 20 Conceptual + 40 Constraint Tasks + 40 Practical = 100 total
    ============================================================ */
 
@@ -150,12 +150,12 @@
 /* Q90. Retrieve foreign keys for m3_orders using information_schema.key_column_usage. */
 /* Q91. Retrieve check constraints from m3_suppliers using information_schema.check_constraints. */
 /* Q92. Retrieve columns having default values using information_schema.columns. */
-/* Q93. Retrieve all tables in acciojob.daily created today using pg_stat_all_tables. */
+/* Q93. Retrieve all tables in daily created today using pg_stat_all_tables. */
 /* Q94. Retrieve constraint types and names from information_schema.table_constraints for all m3_ tables. */
 /* Q95. Retrieve PostgreSQL version. */
 /* Q96. Retrieve schema names using current_schema() and show search_path. */
-/* Q97. Retrieve all unique constraints across acciojob.daily. */
-/* Q98. Retrieve total number of foreign keys defined in acciojob.daily schema. */
+/* Q97. Retrieve all unique constraints across daily. */
+/* Q98. Retrieve total number of foreign keys defined in daily schema. */
 /* Q99. Comment on the difference between DO NOTHING and DO UPDATE for onboarding. */
 /* Q100. Comment a detailed onboarding pipeline you would design to ensure safe constraint enforcement. */
 

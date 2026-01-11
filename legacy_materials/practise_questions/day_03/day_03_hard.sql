@@ -1,12 +1,12 @@
 /* ============================================================
-   ACCIOJOB SQL PRACTICE SET — DAY 3 (HARD LEVEL)
+   SQL PRACTICE SET — DAY 3 (HARD LEVEL)
    Instructor: Sayyed Siraj Ali
    Topic: Data Onboarding + Constraints & Keys + UPSERT (Advanced)
    Scope:
      - Advanced constraint management (composite, multi-FK, nested dependencies)
      - UPSERT chains, multi-table data integrity
      - ON DELETE / ON UPDATE actions across multiple tables
-     - Use acciojob.daily for all DDL/DML, retailmart only for read-only SELECT
+     - Use daily for all DDL/DML, retailmart only for read-only SELECT
    ============================================================ */
 
 /* ============================================================
@@ -145,7 +145,7 @@
 /* Q90. Retrieve all DEFAULTs defined using information_schema.columns. */
 /* Q91. Retrieve all constraints for daily schema using information_schema.table_constraints. */
 /* Q92. Retrieve PostgreSQL version. */
-/* Q93. Retrieve total FK count in acciojob.daily schema. */
+/* Q93. Retrieve total FK count in daily schema. */
 /* Q94. Retrieve constraint types for each h3_ table. */
 /* Q95. Retrieve ON DELETE/UPDATE actions via information_schema.referential_constraints. */
 /* Q96. Retrieve list of all columns with CHECK constraints. */
@@ -159,6 +159,6 @@
    ------------------------------------------------------------
    Instructions:
    - Focus on multi-level constraints, FK cascades, and upsert chains.
-   - Keep DDL/DML operations in acciojob.daily only.
+   - Keep DDL/DML operations in daily only.
    - Document expected constraint violations as comments.
 ============================================================ */

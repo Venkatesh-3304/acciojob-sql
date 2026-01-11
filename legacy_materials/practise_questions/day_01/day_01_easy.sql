@@ -1,9 +1,9 @@
 /* ============================================================
-   ACCIOJOB SQL PRACTICE SET — DAY 1 (EASY LEVEL)
+   SQL PRACTICE SET — DAY 1 (EASY LEVEL)
    Instructor: Sayyed Siraj Ali
    Topic: PostgreSQL Setup & Basics
    Database Context:
-     - DDL/DML → acciojob.daily
+     - DDL/DML → daily
      - SELECT Queries → retailmart
    ============================================================ */
 
@@ -34,8 +34,8 @@
 /* ============================================================
    💻 SECTION B: BASIC COMMANDS (40)
    ------------------------------------------------------------ */
-/* Q21. Create a database named acciojob. */
-/* Q22. Connect to the acciojob database. */
+/* Q21. Create a database named sql_bootcamp. */
+/* Q22. Connect to the sql_bootcamp database. */
 /* Q23. Show all databases in PostgreSQL. */
 /* Q24. Create a schema named daily. */
 /* Q25. Show all schemas in the current database. */
@@ -59,7 +59,7 @@
 /* Q43. Insert a record ('System started') into daily_logs. */
 /* Q44. Select all from daily_logs. */
 /* Q45. Create a new role beginner_user. */
-/* Q46. Grant CONNECT privilege to beginner_user on acciojob. */
+/* Q46. Grant CONNECT privilege to beginner_user on sql_bootcamp. */
 /* Q47. Create table sample_table(id INT PRIMARY KEY). */
 /* Q48. Insert value (5) into sample_table. */
 /* Q49. Drop table sample_table. */
@@ -78,7 +78,7 @@
 /* ============================================================
    🧩 SECTION C: PRACTICAL DDL & DML TASKS (40)
    ------------------------------------------------------------ */
-/* Q61. In acciojob database, create schema daily if not exists. */
+/* Q61. In sql_bootcamp database, create schema daily if not exists. */
 /* Q62. Create table daily_products(product_id SERIAL, name TEXT, price NUMERIC). */
 /* Q63. Insert 3 sample products. */
 /* Q64. Display all from daily_products. */
@@ -124,6 +124,6 @@
    ------------------------------------------------------------
    Instructions:
    - Do not modify existing retailmart tables.
-   - Use acciojob.daily schema for all DDL/DML tasks.
+   - Use daily schema for all DDL/DML tasks.
    - Write answers directly below each comment.
 ============================================================ */

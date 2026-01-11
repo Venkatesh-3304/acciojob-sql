@@ -1,9 +1,9 @@
 /* ============================================================
-   ACCIOJOB SQL PRACTICE SET — DAY 1 (CRAZY HARD LEVEL)
+   SQL PRACTICE SET — DAY 1 (CRAZY HARD LEVEL)
    Instructor: Sayyed Siraj Ali
    Topic: PostgreSQL Setup & Basics
    Database Context:
-     - DDL/DML → acciojob.daily
+     - DDL/DML → daily
      - SELECT Queries → retailmart
    ============================================================ */
 
@@ -34,8 +34,8 @@
 /* ============================================================
    💻 SECTION B: ADVANCED COMMANDS (40)
    ------------------------------------------------------------ */
-/* Q21. Create database acciojob if it doesn’t exist. */
-/* Q22. Connect to acciojob and verify connection. */
+/* Q21. Create database sql_bootcamp if it doesn’t exist. */
+/* Q22. Connect to sql_bootcamp and verify connection. */
 /* Q23. Create schema daily if not exists. */
 /* Q24. Create table daily_products(product_id SERIAL PRIMARY KEY, name TEXT, category TEXT, price NUMERIC(10,2), stock INT). */
 /* Q25. Insert 10 sample rows into daily_products using a single INSERT statement. */
@@ -58,7 +58,7 @@
 /* Q42. Update capacity values by adding 1000 to each existing one. */
 /* Q43. Drop daily_warehouse table. */
 /* Q44. Create a role crazy_user with CREATEDB and LOGIN privileges. */
-/* Q45. Grant CREATE ON DATABASE acciojob to crazy_user. */
+/* Q45. Grant CREATE ON DATABASE sql_bootcamp to crazy_user. */
 /* Q46. Create table daily_audit(id SERIAL, table_name TEXT, action TEXT, log_time TIMESTAMP DEFAULT NOW()). */
 /* Q47. Insert 5 log records into daily_audit for CREATE, UPDATE, DELETE actions. */
 /* Q48. Retrieve all logs ordered by log_time DESC. */
@@ -78,7 +78,7 @@
 /* ============================================================
    🧩 SECTION C: PRACTICAL CHALLENGES (40)
    ------------------------------------------------------------ */
-/* Q61. In acciojob database, create schema daily if not exists. */
+/* Q61. In sql_bootcamp database, create schema daily if not exists. */
 /* Q62. Create 3 tables: daily_customers, daily_products, and daily_orders with all relevant columns. */
 /* Q63. Insert at least 10 records in each table. */
 /* Q64. Update all product prices by increasing 10%. */
@@ -104,9 +104,9 @@
 /* Q84. Retrieve all categories from retailmart.products ordered alphabetically. */
 /* Q85. Show database name using current_database(). */
 /* Q86. Show PostgreSQL version. */
-/* Q87. Retrieve size of acciojob database in MB. */
+/* Q87. Retrieve size of sql_bootcamp database in MB. */
 /* Q88. Retrieve all schemas available using information_schema.schemata. */
-/* Q89. Retrieve all tables in acciojob.daily schema using information_schema.tables. */
+/* Q89. Retrieve all tables in daily schema using information_schema.tables. */
 /* Q90. Create table daily_feedback(id SERIAL, feedback TEXT, added_on TIMESTAMP DEFAULT NOW()). */
 /* Q91. Insert 5 feedback records. */
 /* Q92. Update one feedback text. */
@@ -115,7 +115,7 @@
 /* Q95. Retrieve all active connections and terminate one (theoretically mention command). */
 /* Q96. Retrieve name of default schema from search_path. */
 /* Q97. Retrieve names of all superusers from pg_roles. */
-/* Q98. Retrieve total number of user tables created in acciojob. */
+/* Q98. Retrieve total number of user tables created in sql_bootcamp. */
 /* Q99. Retrieve database creation date from pg_database catalog. */
 /* Q100. Retrieve all table names and their schema using pg_class and pg_namespace joins (conceptually allowed). */
 

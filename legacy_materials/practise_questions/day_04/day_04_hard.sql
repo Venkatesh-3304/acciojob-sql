@@ -1,5 +1,5 @@
 /* ============================================================
-   ACCIOJOB SQL PRACTICE SET — DAY 4 (HARD LEVEL)
+   SQL PRACTICE SET — DAY 4 (HARD LEVEL)
    Instructor: Sayyed Siraj Ali
    Topic: Filtering & Sorting (Advanced Conditional Logic)
    Scope:

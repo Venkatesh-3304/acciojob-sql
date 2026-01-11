@@ -1,5 +1,5 @@
 /* ============================================================
-   ACCIOJOB SQL PRACTICE SET — DAY 4 (MEDIUM LEVEL)
+   SQL PRACTICE SET — DAY 4 (MEDIUM LEVEL)
    Instructor: Sayyed Siraj Ali
    Topic: Filtering & Sorting (Multi-condition Filtering)
    Scope:

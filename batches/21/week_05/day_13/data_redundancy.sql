@@ -19,10 +19,10 @@ CREATE TABLE student_courses_bad (
 
 -- Inserting data (notice the redundancy)
 INSERT INTO student_courses_bad VALUES
-(101, 'Rahul Sharma', 'rahul@email.com', '9876543210', 1, 'SQL Basics', 'Siraj Ali', 'siraj@accio.com'),
-(101, 'Rahul Sharma', 'rahul@email.com', '9876543210', 2, 'Python Programming', 'Priya Singh', 'priya@accio.com'),
-(102, 'Priya Patel', 'priya.p@email.com', '9876543211', 1, 'SQL Basics', 'Siraj Ali', 'siraj@accio.com'),
-(103, 'Amit Kumar', 'amit@email.com', '9876543212', 3, 'Data Analytics', 'Siraj Ali', 'siraj@accio.com');
+(101, 'Rahul Sharma', 'rahul@email.com', '9876543210', 1, 'SQL Basics', 'Siraj Ali', 'siraj@sql-bootcamp.com'),
+(101, 'Rahul Sharma', 'rahul@email.com', '9876543210', 2, 'Python Programming', 'Priya Singh', 'priya@sql-bootcamp.com'),
+(102, 'Priya Patel', 'priya.p@email.com', '9876543211', 1, 'SQL Basics', 'Siraj Ali', 'siraj@sql-bootcamp.com'),
+(103, 'Amit Kumar', 'amit@email.com', '9876543212', 3, 'Data Analytics', 'Siraj Ali', 'siraj@sql-bootcamp.com');
 
 SELECT * FROM student_courses_bad;
 
@@ -218,19 +218,19 @@ CREATE TABLE edtech_platform_nightmare (
 INSERT INTO edtech_platform_nightmare VALUES
 (DEFAULT, 5001, 'Arjun Malhotra', 'arjun@email.com', '9876543210', '2000-05-15', 'Jaipur', 'Rajasthan', 
 'Rakesh Malhotra', '9876543211', 'rakesh@email.com', 101, 'Full Stack Development', 'Programming', 24, 
-50000.00, 201, 'Siraj Ali', 'siraj@accio.com', 'SQL & Backend', 8, 301, 'Batch-Jan-2025-Morning', 
+50000.00, 201, 'Siraj Ali', 'siraj@sql-bootcamp.com', 'SQL & Backend', 8, 301, 'Batch-Jan-2025-Morning', 
 '2025-01-10', '2025-06-10', '10 AM - 1 PM', 'Mon-Wed-Fri', '2025-01-05', 'Completed', 50000.00, 
 'UPI', 10.00, 'REF123', 85, 90, 88, 92, 95.5),
 
 (DEFAULT, 5001, 'Arjun Malhotra', 'arjun@email.com', '9876543210', '2000-05-15', 'Jaipur', 'Rajasthan', 
 'Rakesh Malhotra', '9876543211', 'rakesh@email.com', 102, 'Data Analytics', 'Analytics', 12, 
-30000.00, 202, 'Priya Singh', 'priya@accio.com', 'Data Science', 5, 302, 'Batch-Feb-2025-Evening', 
+30000.00, 202, 'Priya Singh', 'priya@sql-bootcamp.com', 'Data Science', 5, 302, 'Batch-Feb-2025-Evening', 
 '2025-02-01', '2025-04-30', '6 PM - 9 PM', 'Tue-Thu-Sat', '2025-01-25', 'Pending', 15000.00, 
 'Credit Card', 0.00, NULL, NULL, NULL, NULL, NULL, NULL),
 
 (DEFAULT, 5002, 'Meera Iyer', 'meera@email.com', '9876543212', '1999-08-20', 'Chennai', 'Tamil Nadu', 
 'Suresh Iyer', '9876543213', 'suresh@email.com', 101, 'Full Stack Development', 'Programming', 24, 
-50000.00, 201, 'Siraj Ali', 'siraj@accio.com', 'SQL & Backend', 8, 301, 'Batch-Jan-2025-Morning', 
+50000.00, 201, 'Siraj Ali', 'siraj@sql-bootcamp.com', 'SQL & Backend', 8, 301, 'Batch-Jan-2025-Morning', 
 '2025-01-10', '2025-06-10', '10 AM - 1 PM', 'Mon-Wed-Fri', '2025-01-06', 'Completed', 45000.00, 
 'Net Banking', 10.00, 'REF456', 90, 87, 92, 95, 98.0);
 

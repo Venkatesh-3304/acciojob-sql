@@ -1,5 +1,5 @@
 /* ============================================================
-   ACCIOJOB SQL PRACTICE SET — DAY 4 (CRAZY HARD LEVEL)
+   SQL PRACTICE SET — DAY 4 (CRAZY HARD LEVEL)
    Instructor: Sayyed Siraj Ali
    Topic: Filtering & Sorting — Expert Patterns (single-table only)
    Scope (STRICT):

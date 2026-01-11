@@ -1,5 +1,5 @@
 /* ============================================================
-   ACCIOJOB SQL PRACTICE SET — DAY 4 (EASY LEVEL)
+   SQL PRACTICE SET — DAY 4 (EASY LEVEL)
    Instructor: Sayyed Siraj Ali
    Topic: Filtering & Sorting Basics
    Scope:
