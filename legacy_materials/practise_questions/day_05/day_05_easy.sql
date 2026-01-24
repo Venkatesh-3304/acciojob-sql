@@ -4,7 +4,7 @@
 -- Topics: COUNT, SUM, AVG, MIN, MAX, GROUP BY, HAVING
 -- ================================================
 
--- ## EASY
+                     Thoery Questions
 
 -- Q1: What is an aggregate function in SQL? Explain with examples.
 
@@ -105,6 +105,9 @@
 -- Q49: What is the difference between COUNT(column) and SUM(1)?
 
 -- Q50: Can we nest aggregate functions like SUM(AVG(column))?
+
+
+#3 Section B  Practical Questions
 
 -- Q51: Count the total number of customers in the customers.customers table.
 
