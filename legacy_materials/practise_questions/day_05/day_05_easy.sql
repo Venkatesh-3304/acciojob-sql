@@ -106,6 +106,8 @@
 
 -- Q50: Can we nest aggregate functions like SUM(AVG(column))?
 
+
+
 -- Q51: Count the total number of customers in the customers.customers table.
 
 -- Q52: Find the total number of products in products.products table.
